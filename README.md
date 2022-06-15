@@ -1,29 +1,8 @@
-# Writing good how-to or tutorial
+# Common Databus Payload Format
 
-Before you start writing, read the following materials how to write good documentation (including how-tos).
+This tutorial explains the common databus payload format and shows an example how to create a custom connector out of it.
 
-* [Google Developer style guide](https://developers.google.com/style)
-* [Technical writing Courses](https://developers.google.com/tech-writing)
-* [Microsoft Writing Style Guide](https://docs.microsoft.com/cs-cz/style-guide/welcome/)
-
-Then decide: Are you writing a tutorial or a how-to guide?
-
-[Divio](https://documentation.divio.com/) explains the difference  (Note that this applies for software documentation for application developers)
-
-* Tutorials are lessons that take the reader by the hand through a series of steps to complete a project of some kind. They are what your project needs in order to show a beginner that they can achieve something with it. https://documentation.divio.com/tutorials/
-* How-to guides take the reader through the steps required to solve a real-world problem
-
-Each have a different writing style. Tutorials must be bullet proof (no unexpected behavior) https://documentation.divio.com/how-to-guides/
-
-Note: Try to write the tutorials and how-tos as a standalone html page, ready to be generated using Static site generator [MkDocs](https://www.mkdocs.org/). When referencing code examples or files, use the full URL of the git repository. We want to reuse these how-tos and tutorials in Documentation website.
-
-Don't explain concepts. [It gets in a way of action](https://documentation.divio.com/how-to-guides/#don-t-explain-concepts).  
-
-Don't use HTML tags unless working with videos. And try to avoid using videos unless absolutely necessary. Don't upload videos to Git repository.
-
-Bellow you can find the structure of IE tow-to/tutorial
-
-- [Writing good how-to or tutorial](#writing-good-how-to-or-tutorial)
+- [Common Databus Payload Format](#common-databus-payload-format)
   - [Description](#description)
     - [Overview](#overview)
     - [General Task](#general-task)
@@ -40,13 +19,18 @@ Bellow you can find the structure of IE tow-to/tutorial
 
 ### Overview
 
-Why has been this how-to/tutorial created? What is the purpose?
+The Industrial Edge Common Databus Payload Format defines how connectors should publish data to the IE Databus via MQTT. Connectors that fulfill this specification can then reuse the existing functionality of Industrial Edge apps in the Industrial Edge Ecosystem.
+
+The official documentation can be found here:
+[Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
 ### General Task
 
-What is the general goal/task of this how-to/tutorial?
+The first section explains the structure of the Common Databus Payload Format. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.
 
-![task](docs/graphics/example_graphic.png)
+The second section shows an example how to create a custom connector using this format. Here we use a simple docker app, that acts as custom connector and provides some data. The data is published to the IE Databus via MQTT and can be then used by further apps. In this case we use the IE Flow Creator to read out the data and write some data back to the custom connector.
+
+![overview](docs/graphics/overview.png)
 
 ## Requirements
 
@@ -103,4 +87,3 @@ If you are interested in contributing via Pull Request, please check the [Contri
 ## License and Legal Information
 
 Please read the [Legal information](LICENSE.txt).
-

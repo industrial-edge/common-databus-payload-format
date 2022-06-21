@@ -23,6 +23,7 @@ This tutorial explains the common databus payload format and shows an example ho
 The Industrial Edge Common Databus Payload Format defines how connectors should publish data to the IE Databus via MQTT. Connectors that fulfill this specification can then reuse the existing functionality of Industrial Edge apps in the Industrial Edge Ecosystem.
 
 The official documentation can be found here under chapter "General Common Payload Format":
+
 [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
 ![payload_docu](docs/graphics/payload_docu.png)

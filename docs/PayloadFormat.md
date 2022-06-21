@@ -2,16 +2,16 @@
 
 - [Format of Common Databus Payload](#format-of-common-databus-payload)
   - [Databus broker](#databus-broker)
-  - [Server](#server)
   - [Operations](#operations)
-    - [Subscription - Datapoint metadata](subsription-datapoint-metadata)
-    - [Subscription - Read datapoint values](subscription-read-datapoint-values)
+    - [Datapoint metadata (Subscription)](datapoint-metadata-subsription)
+    - [Read datapoint values (Subscription)](read-datapoint-values-subscription)
   - [Messages](#messages)
     - [Simatic Metadata](#simatic-metadata)
   
-## Documentation
+---
 
 The official documentation can be found here under chapter "General Common Payload Format":
+
 [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
 ## Databus broker
@@ -22,7 +22,7 @@ Since the communication between the IE Databus and a connector goes via MQTT, we
 
 ## Operations
 
-### Subscription - Datapoint metadata
+### Datapoint metadata (Subscription)
 
 This operation gets the Simatic Metadata of an app or connector in JSON format.
 
@@ -34,7 +34,7 @@ Example for S7 Connector: `ie/m/j/simatic/v1/s7c1/dp`
 
 The dedicated message payload in JSON format is described [here](#simatic-metadata).
 
-### Subscription - Read datapoint values
+### Read datapoint values (Subscription)
 
 This operation reads Simatic datapoint values of an app or connector in JSON format.
 

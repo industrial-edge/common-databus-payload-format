@@ -25,6 +25,8 @@ The Industrial Edge Common Databus Payload Format defines how connectors should 
 The official documentation can be found here under chapter "General Common Payload Format":
 [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
+![payload_docu](docs/graphics/payload_docu.png)
+
 ### General Task
 
 The first section explains the structure of the Common Databus Payload Format. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.

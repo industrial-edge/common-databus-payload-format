@@ -5,10 +5,11 @@
   - [Databus broker](#databus-broker)
   - [Topics](#topics)
   - [Operations](#operations)
-    - [Get metadata (subscription)](get-metadata-subsription)
-    - [Read datapoint values (subscription)](read-datapoint-values-subscription)
+    - [Get metadata (subDpMetadataSimaticV1)](#get-metadata-subDpMetadataSimaticV1)
+    - [Read datapoint values (subDpValueSimaticV1)](#read-datapoint-values-subDpValueSimaticV1)
   - [Messages](#messages)
-    - [Simatic Metadata](#simatic-metadata)
+    - [Metadata (dpMetadataSimaticV1)](#metadata-dpMetadataSimaticV1)
+    - [Datapoints (subDpValueSimaticV1Msg)](#datapoints-subDpValueSimaticV1Msg)
   
 ## Overview
 
@@ -36,61 +37,70 @@ Within the Edge Ecosystem we have a fixed structure of topics:
 
 **`ie/m/j/simatic/v1/...`**
 
-- ***ie***      = industrial edge
-- ***m***       = metadata / *d* = data / *s* = status
-- ***j***       = JSON format
-- ***simatic*** = SIMATIC schema
-- ***v1***      = major version of the SIMATIC payload
+- **ie**      = industrial edge
+- **m**       = metadata / **d** = data / **s** = status
+- **j**       = JSON format
+- **simatic** = SIMATIC schema
+- **v1**      = major version of the SIMATIC payload
 
 ## Operations
 
-### Get metadata (subscription)
+### Get metadata (subDpMetadataSimaticV1)
 
-This operation gets the Metadata of a connector.
+This subscription gets the Metadata of a connector.
 
 Topic: **`ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
-*{providerAppInstanceId}* is the instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for the S7 Connector or *eip1* for the Ethernet IP Connector)
+- **{providerAppInstanceId}**      = the instance id of an app, like it is already defined for available Edge apps
 
 Example for S7 Connector: `ie/m/j/simatic/v1/s7c1/dp`
 
-The dedicated message payload in JSON format is described [here](#simatic-metadata).
+The dedicated message payload in JSON format is described [here](#metadata-dpmetadatasimaticv1).
 
-### Read datapoint values (subscription)
+### Read datapoint values (subDpValueSimaticV1)
 
-This operation reads Simatic datapoint values of a connector in JSON format.
+This subscription reads datapoint values of a connector.
 
-Topic: `ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`
+Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`**
 
-Parameter 'providerAppInstanceId' = the instance id of an app, like it is already defined for available Edge apps (e.g. "s7c1" for the S7 Connector or "eip1" for the Ethernet IP Connector)
-
-Parameter 'dpConnectionNamePath' = the connection name including '/'
-
-Parameter 'dpCollectionNamePath' = the collection name including '/'1, e.g. "/default"
+- **{providerAppInstanceId}**      = the instance id of an app, like it is already defined for available Edge apps
+- **{dpConnectionNamePath}**      = the connection name including '/'
+- **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 
 Example for S7 Connector: `ie/d/j/simatic/v1/s7c1/dp/r/Plc/default`
 
-The dedicated message payload in JSON format is described [here](#simatic-metadata).
+The dedicated message payload in JSON format is described [here](#datapoints-subdpvaluesimaticv1msg).
 
 ## Messages
 
 Each Operation responds with a dedicated message. Below the payload formats are described.
 
-### Simatic Metadata
+### Metadata (dpMetadataSimaticV1)
 
-This payload contains the Simatic Metadata (dpMetadataSimaticV1).
+This payload contains the metadata.
 
 ```json
-{"seq":1,"hashVersion":3776821982,"connections":
-    [{"name":"Plc","type":"OPCUA","dataPoints":
-        [{"name":"default","topic":"ie/d/j/simatic/v1/s7c1/dp/r/Plc/default","publishType":"bulk","dataPointDefinitions":
-            [{"name":"GDB.operate.machineState","id":"101","dataType":"Int","accessMode":"r","acquisitionCycleInMs":100,"acquisitionMode":"CyclicOnChange"},
-             {"name":"GDB.signals.energySignals.energyConsumptionFillingTank","id":"102","dataType":"Real","accessMode":"r","acquisitionCycleInMs":100,"acquisitionMode":"CyclicOnChange"}
-            ]
-        }]
+{"seq":1,"hashVersion":767858540,"connections":
+  [{"name":"Plc","type":"S7","dataPoints":
+    [{"name":"default","topic":"ie/d/j/simatic/v1/s7c1/dp/r/Plc/default","publishType":"bulk","dataPointDefinitions":
+      [
+        {"name":"machineState","id":"101","dataType":"Int","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"},
+        {"name":"numberProduced","id":"102","dataType":"DInt","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"}
+      ]
     }]
+  }]
 }
-
 ```
 
-subDpValueSimaticV1Msg
+### Datapoints (subDpValueSimaticV1Msg)
+
+This payload contains the datapoint values.
+
+```json
+{"seq":4,"vals":
+  [{"id":"107","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":645.9671020507812},
+  {"id":"108","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":7.897408962249756},
+  {"id":"110","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":116.52999877929688},
+  {"id":"111","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":645.9671020507812}]
+}
+```

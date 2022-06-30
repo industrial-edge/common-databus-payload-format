@@ -5,11 +5,13 @@
   - [Databus broker](#databus-broker)
   - [Topics](#topics)
   - [Operations](#operations)
-    - [Get metadata (subDpMetadataSimaticV1)](#get-metadata-subDpMetadataSimaticV1)
-    - [Read datapoint values (subDpValueSimaticV1)](#read-datapoint-values-subDpValueSimaticV1)
+    - [Get metadata (subDpMetadataSimaticV1)](#get-metadata-subdpmetadatasimaticv1)
+    - [Read datapoint values (subDpValueSimaticV1)](#read-datapoint-values-subdpvaluesimaticv1)
+    - [Write datapoint values (pubDpValueSimaticV1)](#write-datapoint-values-pubdpvaluesimaticv1)
   - [Messages](#messages)
-    - [Metadata (dpMetadataSimaticV1)](#metadata-dpMetadataSimaticV1)
-    - [Datapoints (subDpValueSimaticV1Msg)](#datapoints-subDpValueSimaticV1Msg)
+    - [Metadata (dpMetadataSimaticV1)](#metadata-dpmetadatasimaticv1)
+    - [Read datapoints (subDpValueSimaticV1Msg))](#read-datapoints-subdpvaluesimaticv1msg)
+    - [Write datapoints (pubDpValueSimaticV1Msg))](#write-datapoints-pubdpvaluesimaticv1msg)
   
 ## Overview
 
@@ -47,11 +49,11 @@ Within the Edge Ecosystem we have a fixed structure of topics:
 
 ### Get metadata (subDpMetadataSimaticV1)
 
-This subscription gets the Metadata of a connector.
+A client can **subscribe** to this topic to get the metadata.
 
 Topic: **`ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
-- **{providerAppInstanceId}**      = the instance id of an app, like it is already defined for available Edge apps
+- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps
 
 Example for S7 Connector: `ie/m/j/simatic/v1/s7c1/dp`
 
@@ -59,17 +61,31 @@ The dedicated message payload in JSON format is described [here](#metadata-dpmet
 
 ### Read datapoint values (subDpValueSimaticV1)
 
-This subscription reads datapoint values of a connector.
+A client can **subscribe** to this topic to read datapoint values.
 
 Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`**
 
-- **{providerAppInstanceId}**      = the instance id of an app, like it is already defined for available Edge apps
+- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps
 - **{dpConnectionNamePath}**      = the connection name including '/'
 - **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 
 Example for S7 Connector: `ie/d/j/simatic/v1/s7c1/dp/r/Plc/default`
 
 The dedicated message payload in JSON format is described [here](#datapoints-subdpvaluesimaticv1msg).
+
+### Write datapoint values (pubDpValueSimaticV1)
+
+A client can **publish** a message to this topic to write datapoint values.
+
+Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{dpCollectionNamePath}`**
+
+- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps
+- **{dpConnectionNamePath}**      = the connection name including '/'
+- **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
+
+Example for S7 Connector: `ie/d/j/simatic/v1/s7c1/dp/w/Plc/default`
+
+The dedicated message payload in JSON format is described [here](#write-datapoints-pubDpValueSimaticV1Msg).
 
 ## Messages
 
@@ -85,22 +101,67 @@ This payload contains the metadata.
     [{"name":"default","topic":"ie/d/j/simatic/v1/s7c1/dp/r/Plc/default","publishType":"bulk","dataPointDefinitions":
       [
         {"name":"machineState","id":"101","dataType":"Int","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"},
-        {"name":"numberProduced","id":"102","dataType":"DInt","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"}
+        {"name":"numberProduced","id":"102","dataType":"DInt","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"},
+        {"name":"numberFaulty","id":"103","dataType":"DInt","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"},
+        {"name":"tankLevel","id":"104","dataType":"Real","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"}
       ]
     }]
   }]
 }
 ```
 
-### Datapoints (subDpValueSimaticV1Msg)
+### Read datapoints (subDpValueSimaticV1Msg)
 
-This payload contains the datapoint values.
+This payload contains the datapoint values, that have been read.
 
 ```json
-{"seq":4,"vals":
-  [{"id":"107","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":645.9671020507812},
-  {"id":"108","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":7.897408962249756},
-  {"id":"110","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":116.52999877929688},
-  {"id":"111","qc":3,"ts":"2022-06-30T12:08:00.7318090Z","val":645.9671020507812}]
+{"seq":12571,"vals":
+  [
+    {"id":"101","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":3},
+    {"id":"102","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":1091},
+    {"id":"103","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":0},
+    {"id":"104","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":0.02729782462120056}]
+}
+```
+
+### Write datapoints (pubDpValueSimaticV1Msg)
+
+This payload contains the datapoint values, that shall be written.
+
+```
+{"seq":{seq},"vals":
+  [
+    {"id":"{id_1}","val":{val_1},"ts":"{ts_1}","qc":{qc_1},"qx":{qx_1}},
+    {"id":"{id_2}","val":{val_2},"ts":"{ts_2}","qc":{qc_2},"qx":{qx_2}}
+  ]
+}
+```
+
+- **{seq}**     = [integer] the sequence number (optional)
+- **{id}**    = [string] unique id (string) of one datapoint, as defined in metadata (**required**)
+- **{val}**   = [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
+- **{ts}**      = [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
+- **{qc}**      = [integer] quality of the value, see table below (optional)
+- **{qx}**      = [integer] extended quality of the value (optional)
+
+Quality values
+
+qc    | description
+----- | ------
+0     | BAD - The dp value is not useful
+1     | UNCERTAIN - The quality of the dp value is less than normal, but the value may still be useful
+2     | GOOD (non-cascade) - The quality of the dp value is good
+3     | GOOD (cascade) - The quality of the dp value is good and may be used in control
+
+Example of payload:
+
+```json
+{"seq":1,"vals":
+  [
+    {"id":"101","val":1},
+    {"id":"102","val":1000},
+    {"id":"103","val":10},
+    {"id":"104","val":10.10}
+  ]
 }
 ```

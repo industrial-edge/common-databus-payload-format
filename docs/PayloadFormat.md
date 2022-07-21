@@ -49,13 +49,13 @@ Within the Edge Ecosystem we have a fixed structure of topics:
 
 ### Get metadata (subDpMetadataSimaticV1)
 
-A client can **subscribe** to this topic to get the metadata.
+The metadata provides information about the data structure of a connector. A client can **subscribe** to this topic to get the metadata.
 
 Topic: **`ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
-- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps
+- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for S7 Connector), for this example we use ***custom1***
 
-Example for S7 Connector: `ie/m/j/simatic/v1/s7c1/dp`
+Example for Custom Connector: **`ie/m/j/simatic/v1/custom1/dp`**
 
 The dedicated message payload in JSON format is described [here](#metadata-dpmetadatasimaticv1).
 
@@ -65,11 +65,11 @@ A client can **subscribe** to this topic to read datapoint values.
 
 Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`**
 
-- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps
-- **{dpConnectionNamePath}**      = the connection name including '/'
+- **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
+- **{dpConnectionNamePath}**      = the connection name including '/', for this example we use ***CustomConnector***
 - **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 
-Example for S7 Connector: `ie/d/j/simatic/v1/s7c1/dp/r/Plc/default`
+Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default`**
 
 The dedicated message payload in JSON format is described [here](#datapoints-subdpvaluesimaticv1msg).
 
@@ -79,11 +79,11 @@ A client can **publish** a message to this topic to write datapoint values.
 
 Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{dpCollectionNamePath}`**
 
-- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps
-- **{dpConnectionNamePath}**      = the connection name including '/'
+- **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
+- **{dpConnectionNamePath}**      = the connection name including '/', for this example we use ***CustomConnector***
 - **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 
-Example for S7 Connector: `ie/d/j/simatic/v1/s7c1/dp/w/Plc/default`
+Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/w/CustomConnector/default`**
 
 The dedicated message payload in JSON format is described [here](#write-datapoints-pubDpValueSimaticV1Msg).
 
@@ -96,14 +96,13 @@ Each Operation responds with a dedicated message. Below the payload formats are 
 This payload contains the metadata.
 
 ```json
-{"seq":1,"hashVersion":767858540,"connections":
-  [{"name":"Plc","type":"S7","dataPoints":
-    [{"name":"default","topic":"ie/d/j/simatic/v1/s7c1/dp/r/Plc/default","publishType":"bulk","dataPointDefinitions":
+{"seq":1,"connections":
+  [{"name":"CustomConnector","type":"simulated","dataPoints":
+    [{"name":"default","topic":"ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default","publishType":"bulk","dataPointDefinitions":
       [
-        {"name":"machineState","id":"101","dataType":"Int","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"},
-        {"name":"numberProduced","id":"102","dataType":"DInt","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"},
-        {"name":"numberFaulty","id":"103","dataType":"DInt","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"},
-        {"name":"tankLevel","id":"104","dataType":"Real","accessMode":"rw","acquisitionCycleInMs":500,"acquisitionMode":"CyclicContinuous"}
+        {"name":"Datapoint_Bool","id":"101","dataType":"Bool"},
+        {"name":"Datapoint_Int","id":"102","dataType":"Int"},
+        {"name":"Datapoint_Real","id":"103","dataType":"Real"}
       ]
     }]
   }]
@@ -115,12 +114,12 @@ This payload contains the metadata.
 This payload contains the datapoint values, that have been read.
 
 ```json
-{"seq":12571,"vals":
+{"seq":1,"vals":
   [
-    {"id":"101","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":3},
-    {"id":"102","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":1091},
-    {"id":"103","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":0},
-    {"id":"104","qc":3,"ts":"2022-06-30T13:52:52.0219440Z","val":0.02729782462120056}]
+    {"id":"101","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":true},
+    {"id":"102","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":123},
+    {"id":"103","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":9.99}
+  ]
 }
 ```
 
@@ -156,12 +155,12 @@ qc    | description
 Example of payload:
 
 ```json
-{"seq":1,"vals":
-  [
-    {"id":"101","val":1},
-    {"id":"102","val":1000},
-    {"id":"103","val":10},
-    {"id":"104","val":10.10}
-  ]
+{
+    "seq": 1,
+    "vals":[
+        {"id":"101","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":true},
+        {"id":"102","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":123},
+        {"id":"103","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":9.99}
+    ]
 }
 ```

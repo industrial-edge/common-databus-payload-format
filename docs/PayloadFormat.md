@@ -59,6 +59,10 @@ Example for Custom Connector: **`ie/m/j/simatic/v1/custom1/dp`**
 
 The dedicated message payload in JSON format is described [here](#metadata-dpmetadatasimaticv1).
 
+Using the IE Flow Creator, it could look like this:
+
+![operation_get_metadata](/docs/graphics/operation_get_metadata.png)
+
 ### Read datapoint values (subDpValueSimaticV1)
 
 A client can **subscribe** to this topic to read datapoint values.
@@ -73,6 +77,10 @@ Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/
 
 The dedicated message payload in JSON format is described [here](#datapoints-subdpvaluesimaticv1msg).
 
+Using the IE Flow Creator, it could look like this:
+
+![operation_read_data](/docs/graphics/operation_read_data.png)
+
 ### Write datapoint values (pubDpValueSimaticV1)
 
 A client can **publish** a message to this topic to write datapoint values.
@@ -86,6 +94,10 @@ Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{d
 Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/w/CustomConnector/default`**
 
 The dedicated message payload in JSON format is described [here](#write-datapoints-pubDpValueSimaticV1Msg).
+
+Using the IE Flow Creator, it could look like this:
+
+![operation_write_data](/docs/graphics/operation_write_data.png)
 
 ## Messages
 

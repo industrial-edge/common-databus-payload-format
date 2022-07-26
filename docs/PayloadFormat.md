@@ -8,10 +8,12 @@
     - [Get metadata (subDpMetadataSimaticV1)](#get-metadata-subdpmetadatasimaticv1)
     - [Read datapoint values (subDpValueSimaticV1)](#read-datapoint-values-subdpvaluesimaticv1)
     - [Write datapoint values (pubDpValueSimaticV1)](#write-datapoint-values-pubdpvaluesimaticv1)
+    - [Get connector status (subDiagConnectorStatus)](#get-connector-status-subdiagconnectorstatus)
   - [Messages](#messages)
     - [Metadata (dpMetadataSimaticV1)](#metadata-dpmetadatasimaticv1)
     - [Read datapoints (subDpValueSimaticV1Msg))](#read-datapoints-subdpvaluesimaticv1msg)
     - [Write datapoints (pubDpValueSimaticV1Msg))](#write-datapoints-pubdpvaluesimaticv1msg)
+    - [Connector status (subDiagConnectorStatusMsg)](#connector-status-subdiagconnectorstatusmsg)
   
 ## Overview
 
@@ -99,6 +101,22 @@ Using the IE Flow Creator, it could look like this:
 
 ![operation_write_data](/docs/graphics/operation_write_data.png)
 
+### Get connector status (subDiagConnectorStatus)
+
+A client can **subscribe** to this topic to get the current status of a connector and it's connections.
+
+Topic: **`ie/s/j/simatic/v1/{providerAppInstanceId}/status`**
+
+- **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
+
+Example for Custom Connector: **`ie/s/j/simatic/v1/custom1/status`**
+
+The dedicated message payload in JSON format is described [here](#connector-status-subdiagconnectorstatusmsg).
+
+Using the IE Flow Creator, it could look like this:
+
+![operation_get_status](/docs/graphics/operation_get_status.png)
+
 ## Messages
 
 Each Operation responds with a dedicated message. Below the payload formats are described.
@@ -173,6 +191,19 @@ Example of payload:
         {"id":"101","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":true},
         {"id":"102","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":123},
         {"id":"103","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":9.99}
+    ]
+}
+```
+
+### Connector status (subDiagConnectorStatusMsg)
+
+This payload contains the connector status.
+
+```json
+{"seq":2,"ts":"2022-07-26T06:45:17Z","connector":
+  {"status":"good"},"connections":
+    [
+      {"name":"CustomConnector","status":"bad"}
     ]
 }
 ```

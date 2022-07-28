@@ -139,6 +139,19 @@ This payload contains the metadata.
 }
 ```
 
+- **{seq}**         = [integer] the sequence number (optional)
+- **{connections}** = [array(object)] array of connections information (**required**)
+- **{name}**        = [string] name of the connection (**required**)
+- **{type}**        = [string] type of the connection, e.g. "s7"/"pn" (**required**)
+- **{dataPoints}**  = [array(object)] array of datapoints of this connection (**required**)
+- **{name}**        = [string] name of the datapoint collection (**required**)
+- **{topic}**       = [string] MQTT topic name of the datapoint collection, e.g. "default" (**required**)
+- **{publishType}** = [string] type of publishing, one of "bulk"/"timeseries"/"binarytimeseries" (optional)
+- **{dataPointDefinitions}** = [array(object)] datapoints of this connection (**required**)
+- **{name}**        = [string] name of the datapoint, the name is only unique within a connection (**required**)
+- **{id}**          = [string] this is a reference between the properties "id" of the datapoint definition in the metadata and the property "id" in the datapoint value (**required**)
+- **{dataType}**    = [string] datatype of datapoint, one of "Bool"/"Byte"/"Word"/"DWord"/"LWord"/"SInt"/"USInt"/"Int"/"UInt"/"DInt"/"UDInt"/"LInt"/"ULInt"/"Real"/"LReal"/"Char"/"String"/"Time"/"LTime"/"DateTime"/"Date"/"Time_Of_Day"/"LTime_Of_Day" (**required**)
+
 ### Read datapoints (subDpValueSimaticV1Msg)
 
 This payload contains the datapoint values, that have been read.
@@ -167,6 +180,7 @@ This payload contains the datapoint values, that shall be written.
 ```
 
 - **{seq}**     = [integer] the sequence number (optional)
+- **{vals}**   = [array(object)] array of data points published in the payload (**required**)
 - **{id}**    = [string] unique id (string) of one datapoint, as defined in metadata (**required**)
 - **{val}**   = [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
 - **{ts}**      = [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
@@ -200,10 +214,38 @@ Example of payload:
 This payload contains the connector status.
 
 ```json
-{"seq":2,"ts":"2022-07-26T06:45:17Z","connector":
-  {"status":"good"},"connections":
+{ 
+  "seq":2,
+  "ts":"2022-07-26T06:45:17Z",
+  "connector":{"status":"good"},
+  "connections":
     [
       {"name":"CustomConnector","status":"bad"}
     ]
 }
 ```
+
+- **{seq}**         = [integer] the sequence number (optional)
+- **{ts}**          = [string] timestamp of the status message, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
+- **{connector}**   = [object] properties of connector (**required**)
+- **{status}**      = [string] status of the connector, one of "good"/"bad"/"available"/"unavailable" (**required**)
+- **{connections}** = [array(object)] array of connection status information (**required**)
+- **{name}**        = [string] name of the connection (**required**)
+- **{status}**      = [string] status of the connection, one of "good"/"stopped"/"bad" (**required**)
+
+**Connector status values**
+
+status      | description
+----------- | ------
+good        | Connector is running, connections to DataBus and underlying driver are established. Everything is fine.
+bad         | Connector is running, but not fully functional.
+available   | Connector started up and just established connection to DataBus. Status of underlying driver and connections is not yet known. This is the "birth" message.
+unavailable | Connector lost connection to DataBus. This is the "last will" message.
+
+**Connection status values**
+
+status      | description
+----------- | ------
+good        | Connection to device is up. Device is in running state.
+stopped     | Connection to device is up. Device is in stopped state. No process data will be available. Only System Alarms are available from some devices (e.g. S7-1500).
+bad         | Connection to device is not working as expected, communication to device will not work.

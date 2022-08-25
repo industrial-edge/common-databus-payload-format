@@ -10,7 +10,7 @@ This tutorial explains the common databus payload format and shows an example ho
     - [Prerequisites](#prerequisites)
     - [Used components](#used-components)
   - [Format of Common Databus Payload](#format-of-common-databus-payload)
-  - [Custom connector app](#installation)
+  - [Custom connector](#custom-connector)
   - [Usage](#usage)
   - [Documentation](#documentation)
   - [Contribution](#contribution)
@@ -69,7 +69,7 @@ You can find a detailed description of the Common Databus Payload Format here:
 2. [Operations](/docs/payload-format/PayloadFormat.md#operations)
 3. [Messages](/docs/payload-format/PayloadFormat.md#messages)
 
-## Custom connector app
+## Custom connector
 
 To successfully run the example app "Custom Connector App", you need to follow these steps:
 

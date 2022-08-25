@@ -10,7 +10,7 @@ This tutorial explains the common databus payload format and shows an example ho
     - [Prerequisites](#prerequisites)
     - [Used components](#used-components)
   - [Format of Common Databus Payload](#format-of-common-databus-payload)
-  - [Installation](#installation)
+  - [Custom connector app](#installation)
   - [Usage](#usage)
   - [Documentation](#documentation)
   - [Contribution](#contribution)
@@ -26,15 +26,17 @@ The official documentation can be found here under chapter "General Common Paylo
 
 [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
-![payload_docu](docs/graphics/payload_docu.png)
+![payload_docu](docs/overview_payload_docu.png)
 
 ### General Task
 
-The first section explains the structure of the Common Databus Payload Format. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.
+The first section explains the **structure of the Common Databus Payload Format**. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.
 
-The second section shows an example how to create a custom connector using this format. Here we use a simple docker app "Custom Connector App", that acts as custom connector and provides some data. The data is published to the IE Databus via MQTT and can be then used by further apps. In this case we use the IE Flow Creator to read out the data and write some data back to the custom connector.
+![overview](docs/overview_payload.png)
 
-![overview](docs/graphics/overview.png)
+The second section shows an **example of a custom connector** using this format. Here we use a simple docker app "Custom Connector App", that acts as custom connector and provides some data. The data is published to the IE Databus via MQTT and can be then used by further apps. In this case we use the IE Flow Creator to read out the data and write some data back to the custom connector.
+
+![overview](docs/overview_app.png)
 
 ## Requirements
 
@@ -67,7 +69,7 @@ You can find a detailed description of the Common Databus Payload Format here:
 2. [Operations](/docs/payload-format/PayloadFormat.md#operations)
 3. [Messages](/docs/payload-format/PayloadFormat.md#messages)
 
-## Installation
+## Custom connector app
 
 To successfully run the example app "Custom Connector App", you need to follow these steps:
 

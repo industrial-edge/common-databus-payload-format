@@ -1,6 +1,6 @@
-# Installation
+# Custom Connector
 
-- [Installation](#installation)
+- [Custom Connector](#custom-connector)
   - [Build application](#build-application)
     - [Cloning image](#cloning-image)
     - [Build docker image](#build-docker-image)

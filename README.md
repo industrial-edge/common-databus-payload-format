@@ -73,9 +73,9 @@ You can find a detailed description of the Common Databus Payload Format here:
 
 To successfully run the example app "Custom Connector App", you need to follow these steps:
 
-1. [Build and upload application](/docs/installation/Installation.md#build-and-upload-application)
-2. [Configuration](/docs/installation/Installation.md#configuration)
-3. [Deploy and run application](/docs/installation/Installation.md#deploy-and-run-application)
+1. [Build and upload application](/docs/custom-connector/CustomConnector.md#build-and-upload-application)
+2. [Configuration](/docs/custom-connector/CustomConnector.md#configuration)
+3. [Deploy and run application](/docs/custom-connector/CustomConnector.md#deploy-and-run-application)
 
 ## Usage
 

@@ -61,19 +61,19 @@ The second section shows an example how to create a custom connector using this 
 
 ## Format of Common Databus Payload
 
-You can find a detailed description of the Common Databus Payload Format [here](/docs/payload-format/PayloadFormat.md).
+You can find a detailed description of the Common Databus Payload Format here:
 
-- [Databus broker](/docs/payload-format/PayloadFormat.md#databus-broker)
-- [Operations](/docs/payload-format/PayloadFormat.md#operations)
-- [Messages](/docs/payload-format/PayloadFormat.md#messages)
+1. [Databus broker](/docs/payload-format/PayloadFormat.md#databus-broker)
+2. [Operations](/docs/payload-format/PayloadFormat.md#operations)
+3. [Messages](/docs/payload-format/PayloadFormat.md#messages)
 
 ## Installation
 
-To successfully run the example app "Custom Connector App", you need to follow [these](/docs/installation/Installation.md) steps.
+To successfully run the example app "Custom Connector App", you need to follow these steps:
 
-- [Build and upload application](/docs/installation/Installation.md#build-and-upload-application)
-- [Configuration](/docs/installation/Installation.md#configuration)
-- [Deploy and run application](/docs/installation/Installation.md#deploy-and-run-application)
+1. [Build and upload application](/docs/installation/Installation.md#build-and-upload-application)
+2. [Configuration](/docs/installation/Installation.md#configuration)
+3. [Deploy and run application](/docs/installation/Installation.md#deploy-and-run-application)
 
 ## Usage
 
@@ -87,6 +87,7 @@ You can find further documentation and help in the following links:
 - [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
 - [Industrial Edge landing page](https://new.siemens.com/global/en/products/automation/topic-areas/industrial-edge/simatic-edge.html)
 - [Industrial Edge GitHub page](https://github.com/industrial-edge)
+- [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
 ## Contribution
 

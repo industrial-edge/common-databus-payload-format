@@ -23,7 +23,7 @@ The official documentation can be found here under chapter "General Common Paylo
 
 [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
-![mqtt](/docs/graphics/mqtt.png)
+![mqtt](/docs/installation/graphics/mqtt.png)
 
 ## Databus broker
 
@@ -63,7 +63,7 @@ The dedicated message payload in JSON format is described [here](#metadata-dpmet
 
 Using the IE Flow Creator, it could look like this:
 
-![operation_get_metadata](/docs/graphics/operation_get_metadata.png)
+![operation_get_metadata](/docs/installation/graphics/operation_get_metadata.png)
 
 ### Read datapoint values (subDpValueSimaticV1)
 
@@ -81,7 +81,7 @@ The dedicated message payload in JSON format is described [here](#datapoints-sub
 
 Using the IE Flow Creator, it could look like this:
 
-![operation_read_data](/docs/graphics/operation_read_data.png)
+![operation_read_data](/docs/installation/graphics/operation_read_data.png)
 
 ### Write datapoint values (pubDpValueSimaticV1)
 
@@ -99,7 +99,7 @@ The dedicated message payload in JSON format is described [here](#write-datapoin
 
 Using the IE Flow Creator, it could look like this:
 
-![operation_write_data](/docs/graphics/operation_write_data.png)
+![operation_write_data](/docs/installation/graphics/operation_write_data.png)
 
 ### Get connector status (subDiagConnectorStatus)
 
@@ -115,7 +115,7 @@ The dedicated message payload in JSON format is described [here](#connector-stat
 
 Using the IE Flow Creator, it could look like this:
 
-![operation_get_status](/docs/graphics/operation_get_status.png)
+![operation_get_status](/docs/installation/graphics/operation_get_status.png)
 
 ## Messages
 
@@ -165,6 +165,11 @@ This payload contains the datapoint values, that have been read.
   ]
 }
 ```
+
+- **{seq}**   = [integer] the sequence number (optional)
+- **{vals}**  = [array(object)] array of data points published in the payload (**required**)
+- **{id}**    = [string] unique id (string) of one datapoint, reference to 'id' as defined in metadata (**required**)
+
 
 ### Write datapoints (pubDpValueSimaticV1Msg)
 

@@ -61,19 +61,19 @@ The second section shows an example how to create a custom connector using this 
 
 ## Format of Common Databus Payload
 
-You can find a detailed description of the Common Databus Payload Format [here](/docs/PayloadFormat.md).
+You can find a detailed description of the Common Databus Payload Format [here](/docs/payload-format/PayloadFormat.md).
 
-- [Databus broker](/docs/PayloadFormat.md#databus-broker)
-- [Operations](/docs/PayloadFormat.md#operations)
-- [Messages](/docs/PayloadFormat.md#messages)
+- [Databus broker](/docs/payload-format/PayloadFormat.md#databus-broker)
+- [Operations](/docs/payload-format/PayloadFormat.md#operations)
+- [Messages](/docs/payload-format/PayloadFormat.md#messages)
 
 ## Installation
 
-To successfully run the example app "Custom Connector App", you need to follow [these](/docs/Installation.md) steps.
+To successfully run the example app "Custom Connector App", you need to follow [these](/docs/installation/Installation.md) steps.
 
-- [Build and upload application](/docs/Installation.md#build-and-upload-application)
-- [Configuration](/docs/Installation.md#configuration)
-- [Deploy and run application](/docs/Installation.md#deploy-and-run-application)
+- [Build and upload application](/docs/installation/Installation.md#build-and-upload-application)
+- [Configuration](/docs/installation/Installation.md#configuration)
+- [Deploy and run application](/docs/installation/Installation.md#deploy-and-run-application)
 
 ## Usage
 

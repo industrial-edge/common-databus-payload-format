@@ -59,7 +59,7 @@ Topic: **`ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
 Example for Custom Connector: **`ie/m/j/simatic/v1/custom1/dp`**
 
-The dedicated message payload in JSON format is described [here](#metadata-dpmetadatasimaticv1).
+The dedicated **message payload** in JSON format is described [here](#metadata-dpmetadatasimaticv1).
 
 Using the IE Flow Creator, it could look like this:
 
@@ -77,7 +77,7 @@ Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{d
 
 Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default`**
 
-The dedicated message payload in JSON format is described [here](#datapoints-subdpvaluesimaticv1msg).
+The dedicated **message payload** in JSON format is described [here](#read-datapoints-subdpvaluesimaticv1msg).
 
 Using the IE Flow Creator, it could look like this:
 
@@ -95,7 +95,7 @@ Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{d
 
 Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/w/CustomConnector/default`**
 
-The dedicated message payload in JSON format is described [here](#write-datapoints-pubDpValueSimaticV1Msg).
+The dedicated **message payload** in JSON format is described [here](#write-datapoints-pubDpValueSimaticV1Msg).
 
 Using the IE Flow Creator, it could look like this:
 
@@ -111,7 +111,7 @@ Topic: **`ie/s/j/simatic/v1/{providerAppInstanceId}/status`**
 
 Example for Custom Connector: **`ie/s/j/simatic/v1/custom1/status`**
 
-The dedicated message payload in JSON format is described [here](#connector-status-subdiagconnectorstatusmsg).
+The dedicated **message payload** in JSON format is described [here](#connector-status-subdiagconnectorstatusmsg).
 
 Using the IE Flow Creator, it could look like this:
 
@@ -125,7 +125,7 @@ Each Operation responds with a dedicated message. Below the payload formats are 
 
 This payload contains the metadata.
 
-```json
+```
 {"seq":1,"connections":
   [{"name":"CustomConnector","type":"simulated","dataPoints":
     [{"name":"default","topic":"ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default","publishType":"bulk","dataPointDefinitions":
@@ -138,37 +138,58 @@ This payload contains the metadata.
   }]
 }
 ```
-
+Metadata
 - **{seq}**         = [integer] the sequence number (optional)
-- **{connections}** = [array(object)] array of connections information (**required**)
+- **{connections}** = [array(object)] ARRAY of connections information (**required**)
+
+Connection
 - **{name}**        = [string] name of the connection (**required**)
 - **{type}**        = [string] type of the connection, e.g. "s7"/"pn" (**required**)
-- **{dataPoints}**  = [array(object)] array of datapoints of this connection (**required**)
-- **{name}**        = [string] name of the datapoint collection (**required**)
-- **{topic}**       = [string] MQTT topic name of the datapoint collection, e.g. "default" (**required**)
+- **{dataPoints}**  = [array(object)] ARRAY of datapoints of this connection, datapoints can be grouped into different collections (**required**)
+- **{name}**        = [string] name of the datapoint collection, e.g. "default" (**required**)
+- **{topic}**       = [string] MQTT topic name of the datapoint collection (**required**)
+- **{pubTopic}**    = [string] MQTT topic name of the datapoint collection for writing to datapoints of the connector, required when any writeable datapoint is defined (partially required)
 - **{publishType}** = [string] type of publishing, one of "bulk"/"timeseries"/"binarytimeseries" (optional)
 - **{dataPointDefinitions}** = [array(object)] datapoints of this connection (**required**)
+
+Datapoint definition
 - **{name}**        = [string] name of the datapoint, the name is only unique within a connection (**required**)
-- **{id}**          = [string] this is a reference between the properties "id" of the datapoint definition in the metadata and the property "id" in the datapoint value (**required**)
+- **{id}**          = [string] this is a reference between the properties "id" of the datapoint definition in the metadata and the property "id" in the datapoint value, only unique within the connection and not long term stable (and can change after new configuration) (**required**)
 - **{dataType}**    = [string] datatype of datapoint, one of "Bool"/"Byte"/"Word"/"DWord"/"LWord"/"SInt"/"USInt"/"Int"/"UInt"/"DInt"/"UDInt"/"LInt"/"ULInt"/"Real"/"LReal"/"Char"/"String"/"Time"/"LTime"/"DateTime"/"Date"/"Time_Of_Day"/"LTime_Of_Day" (**required**)
 
 ### Read datapoints (subDpValueSimaticV1Msg)
 
 This payload contains the datapoint values, that have been read.
 
-```json
+```
 {"seq":1,"vals":
   [
-    {"id":"101","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":true},
-    {"id":"102","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":123},
-    {"id":"103","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":9.99}
+    {"id":"101","val":true,"ts":"2022-07-21T13:01:50.159Z","qc":3},
+    {"id":"102","val":123,"ts":"2022-07-21T13:01:50.159Z","qc":3},
+    {"id":"103","val":9.99,"ts":"2022-07-21T13:01:50.159Z","qc":3}
   ]
 }
 ```
 
+Datapoints
 - **{seq}**   = [integer] the sequence number (optional)
-- **{vals}**  = [array(object)] array of data points published in the payload (**required**)
+- **{vals}**  = [array(object)] ARRAY of data points published in the payload (**required**)
+
+Datapoint
 - **{id}**    = [string] unique id (string) of one datapoint, reference to 'id' as defined in metadata (**required**)
+- **{val}**   = [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
+- **{ts}**    = [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
+- **{qc}**    = [integer] quality of the value, see table below (optional)
+- **{qx}**      = [integer] extended quality of the value (optional)
+
+Quality of values
+
+qc    | description
+----- | ------
+0     | BAD - The dp value is not useful
+1     | UNCERTAIN - The quality of the dp value is less than normal, but the value may still be useful
+2     | GOOD (non-cascade) - The quality of the dp value is good
+3     | GOOD (cascade) - The quality of the dp value is good and may be used in control
 
 
 ### Write datapoints (pubDpValueSimaticV1Msg)
@@ -184,15 +205,18 @@ This payload contains the datapoint values, that shall be written.
 }
 ```
 
+Datapoints
 - **{seq}**     = [integer] the sequence number (optional)
-- **{vals}**   = [array(object)] array of data points published in the payload (**required**)
+- **{vals}**   = [array(object)] ARRAY of data points published in the payload (**required**)
+
+Datapoint
 - **{id}**    = [string] unique id (string) of one datapoint, as defined in metadata (**required**)
 - **{val}**   = [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
 - **{ts}**      = [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
 - **{qc}**      = [integer] quality of the value, see table below (optional)
 - **{qx}**      = [integer] extended quality of the value (optional)
 
-Quality values
+Quality of values
 
 qc    | description
 ----- | ------
@@ -203,7 +227,7 @@ qc    | description
 
 Example of payload:
 
-```json
+```
 {
     "seq": 1,
     "vals":[
@@ -218,11 +242,12 @@ Example of payload:
 
 This payload contains the connector status.
 
-```json
+```
 { 
   "seq":2,
   "ts":"2022-07-26T06:45:17Z",
-  "connector":{"status":"good"},
+  "connector":
+      {"status":"good"},
   "connections":
     [
       {"name":"CustomConnector","status":"bad"}
@@ -230,11 +255,14 @@ This payload contains the connector status.
 }
 ```
 
+Connector
 - **{seq}**         = [integer] the sequence number (optional)
 - **{ts}**          = [string] timestamp of the status message, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
 - **{connector}**   = [object] properties of connector (**required**)
 - **{status}**      = [string] status of the connector, one of "good"/"bad"/"available"/"unavailable" (**required**)
-- **{connections}** = [array(object)] array of connection status information (**required**)
+- **{connections}** = [array(object)] ARRAY of connection status information (**required**)
+
+Connection
 - **{name}**        = [string] name of the connection (**required**)
 - **{status}**      = [string] status of the connection, one of "good"/"stopped"/"bad" (**required**)
 

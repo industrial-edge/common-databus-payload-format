@@ -127,15 +127,16 @@ This payload contains the metadata.
 
 ```
 {"seq":1,"connections":
-  [{"name":"CustomConnector","type":"simulated","dataPoints":
-    [{"name":"default","topic":"ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default","publishType":"bulk","dataPointDefinitions":
+  [
+    {"name":"CustomConnector","type":"simulated","dataPoints":
       [
-        {"name":"Datapoint_Bool","id":"101","dataType":"Bool"},
-        {"name":"Datapoint_Int","id":"102","dataType":"Int"},
-        {"name":"Datapoint_Real","id":"103","dataType":"Real"}
-      ]
+        {"name":"default","topic":"ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default","publishType":"bulk","dataPointDefinitions":
+          [
+            {"name":"Datapoint_Bool","id":"101","dataType":"Bool"},
+            {"name":"Datapoint_Int","id":"102","dataType":"Int"},
+            {"name":"Datapoint_Real","id":"103","dataType":"Real"}]
+        }]
     }]
-  }]
 }
 ```
 Metadata
@@ -230,7 +231,8 @@ Example of payload:
 ```
 {
     "seq": 1,
-    "vals":[
+    "vals":
+    [
         {"id":"101","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":true},
         {"id":"102","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":123},
         {"id":"103","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":9.99}
@@ -246,8 +248,7 @@ This payload contains the connector status.
 { 
   "seq":2,
   "ts":"2022-07-26T06:45:17Z",
-  "connector":
-      {"status":"good"},
+  "connector": {"status":"good"},
   "connections":
     [
       {"name":"CustomConnector","status":"bad"}

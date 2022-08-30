@@ -65,9 +65,11 @@ The second section shows an **example of a custom connector** using this format.
 
 You can find a detailed description of the Common Databus Payload Format here:
 
-1. [Databus broker](/docs/payload-format/PayloadFormat.md#databus-broker)
-2. [Operations](/docs/payload-format/PayloadFormat.md#operations)
-3. [Messages](/docs/payload-format/PayloadFormat.md#messages)
+1. [Overview](/docs/payload-format/PayloadFormat.md#overview)
+2. [Databus broker](/docs/payload-format/PayloadFormat.md#databus-broker)
+3. [Topics](/docs/payload-format/PayloadFormat.md#topics)
+4. [Operations](/docs/payload-format/PayloadFormat.md#operations)
+5. [Messages](/docs/payload-format/PayloadFormat.md#messages)
 
 ## Custom connector
 

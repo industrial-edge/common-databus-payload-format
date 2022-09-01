@@ -41,11 +41,11 @@ Within the Edge Ecosystem we have a fixed structure of topics:
 
 **`ie/m/j/simatic/v1/...`**
 
-- **ie**      = industrial edge
-- **m**       = metadata / **d** = data / **s** = status
-- **j**       = JSON format
-- **simatic** = SIMATIC schema
-- **v1**      = major version of the SIMATIC payload
+- **ie**                                = industrial edge
+- **m**/**d**/**s**                     = **m** = metadata / **d** = data / **s** = status ({mqttPayloadType})
+- **j**                                 = JSON format ({mqttPayloadEncoding})
+- **simatic**                           = name for the SIMATIC schema ({msgStructureScheme})
+- **v1**                                = major version of the SIMATIC payload schema ({msgStructureSchemeMajorVersion})
 
 ## Operations
 
@@ -56,6 +56,7 @@ The metadata provides information about the data structure of a connector. A cli
 Topic: **`ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
 - **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for S7 Connector), for this example we use ***custom1***
+- **dp**                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
 
 Example for Custom Connector: **`ie/m/j/simatic/v1/custom1/dp`**
 
@@ -72,6 +73,8 @@ A client can **subscribe** to this topic to read datapoint values.
 Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`**
 
 - **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
+- **dp**                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
+- **r**                           = datapoint access mode "read" ({dpAccessmode})
 - **{dpConnectionNamePath}**      = the connection name including '/', for this example we use ***CustomConnector***
 - **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 
@@ -90,6 +93,8 @@ A client can **publish** a message to this topic to write datapoint values.
 Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{dpCollectionNamePath}`**
 
 - **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
+- **dp**                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
+- **w**                           = datapoint access mode "write" ({dpAccessmode})
 - **{dpConnectionNamePath}**      = the connection name including '/', for this example we use ***CustomConnector***
 - **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 

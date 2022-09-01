@@ -152,13 +152,15 @@ Connection
 - **{name}**        = [string] name of the connection (**required**)
 - **{type}**        = [string] type of the connection, e.g. "s7"/"pn" (**required**)
 - **{dataPoints}**  = [array(object)] ARRAY of datapoints of this connection, datapoints can be grouped into different collections (**required**)
+
+Datapoint collection
 - **{name}**        = [string] name of the datapoint collection, e.g. "default" (**required**)
 - **{topic}**       = [string] MQTT topic name of the datapoint collection (**required**)
 - **{pubTopic}**    = [string] MQTT topic name of the datapoint collection for writing to datapoints of the connector, required when any writeable datapoint is defined (partially required)
 - **{publishType}** = [string] type of publishing, one of "bulk"/"timeseries"/"binarytimeseries" (optional)
 - **{dataPointDefinitions}** = [array(object)] datapoints of this connection (**required**)
 
-Datapoint definition
+Datapoint
 - **{name}**        = [string] name of the datapoint, the name is only unique within a connection (**required**)
 - **{id}**          = [string] this is a reference between the properties "id" of the datapoint definition in the metadata and the property "id" in the datapoint value, only unique within the connection and not long term stable (and can change after new configuration) (**required**)
 - **{dataType}**    = [string] datatype of datapoint, one of "Bool"/"Byte"/"Word"/"DWord"/"LWord"/"SInt"/"USInt"/"Int"/"UInt"/"DInt"/"UDInt"/"LInt"/"ULInt"/"Real"/"LReal"/"Char"/"String"/"Time"/"LTime"/"DateTime"/"Date"/"Time_Of_Day"/"LTime_Of_Day" (**required**)

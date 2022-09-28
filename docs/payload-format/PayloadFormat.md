@@ -131,11 +131,11 @@ Each Operation responds with a dedicated message. Below the payload formats are 
 This payload contains the metadata.
 
 ```
-{"seq":1,"connections":
+{"seq":1,"hashVersion":123456789,"applicationName":"Custom Connector V1.0","statustopic":"ie/s/j/simatic/v1/custom1/status","connections":
   [
-    {"name":"CustomConnector","type":"simulated","dataPoints":
+    {"name":"Connection_1","type":"simulated","dataPoints":
       [
-        {"name":"default","topic":"ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default","publishType":"bulk","dataPointDefinitions":
+        {"name":"Collection_1","topic":"ie/d/j/simatic/v1/custom1/dp/r/Connection_1/Collection_1","pubTopic":"ie/d/j/simatic/v1/custom1/dp/w/Connection_1/Collection_1","publishType":"bulk","dataPointDefinitions":
           [
             {"name":"Datapoint_Bool","id":"101","dataType":"Bool"},
             {"name":"Datapoint_Int","id":"102","dataType":"Int"},
@@ -172,9 +172,9 @@ This payload contains the datapoint values, that have been read.
 ```
 {"seq":1,"vals":
   [
-    {"id":"101","val":true,"ts":"2022-07-21T13:01:50.159Z","qc":3},
-    {"id":"102","val":123,"ts":"2022-07-21T13:01:50.159Z","qc":3},
-    {"id":"103","val":9.99,"ts":"2022-07-21T13:01:50.159Z","qc":3}
+    {"id":"101","val":false,"ts":"2022-07-21T13:01:50.159Z","qc":3},
+    {"id":"102","val":4,"ts":"2022-07-21T13:01:50.159Z","qc":3},
+    {"id":"103","val":4.123,"ts":"2022-07-21T13:01:50.159Z","qc":3}
   ]
 }
 ```
@@ -205,10 +205,11 @@ qc    | description
 This payload contains the datapoint values, that shall be written.
 
 ```
-{"seq":{seq},"vals":
+{"seq":1,"vals":
   [
-    {"id":"{id_1}","val":{val_1},"ts":"{ts_1}","qc":{qc_1},"qx":{qx_1}},
-    {"id":"{id_2}","val":{val_2},"ts":"{ts_2}","qc":{qc_2},"qx":{qx_2}}
+    {"id":"101","val":false,"ts":"2022-07-21T13:01:50.159Z","qc":3,"qx":0},
+    {"id":"102","val":4,"ts":"2022-07-21T13:01:50.159Z","qc":3,"qx":0},
+    {"id":"103","val":4.123,"ts":"2022-07-21T13:01:50.159Z","qc":3,"qx":0}
   ]
 }
 ```
@@ -233,32 +234,18 @@ qc    | description
 2     | GOOD (non-cascade) - The quality of the dp value is good
 3     | GOOD (cascade) - The quality of the dp value is good and may be used in control
 
-Example of payload:
-
-```
-{
-    "seq": 1,
-    "vals":
-    [
-        {"id":"101","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":true},
-        {"id":"102","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":123},
-        {"id":"103","qc":3,"ts":"2022-07-21T13:01:50.159Z","val":9.99}
-    ]
-}
-```
-
 ### Connector status (subDiagConnectorStatusMsg)
 
 This payload contains the connector status.
 
 ```
 { 
-  "seq":2,
-  "ts":"2022-07-26T06:45:17Z",
+  "seq":1,
+  "ts":"2022-07-21T13:01:50.159Z",
   "connector": {"status":"good"},
   "connections":
     [
-      {"name":"CustomConnector","status":"bad"}
+      {"name":"Connection_1","status":"good"}
     ]
 }
 ```

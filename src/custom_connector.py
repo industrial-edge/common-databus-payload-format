@@ -48,12 +48,12 @@ def read_parameter(jsonfile):
 def publish_metadata(client):
         meta_json_string = json.dumps(METADATA_JSON)
         pub = client.publish(MQTT_METADATA_TOPIC, meta_json_string)
-        print(f"> Published metadata on topic = {MQTT_METADATA_TOPIC} with result = {pub}")
+        #print(f"> Published metadata on topic = {MQTT_METADATA_TOPIC} with result = {pub}")
 
 def publish_statusdata(client):
         status_json_string = json.dumps(STATUS_JSON)
         pub = client.publish(MQTT_STATUS_TOPIC, status_json_string)
-        print(f"> Published status data on topic = {MQTT_STATUS_TOPIC} with result = {pub}")
+        #print(f"> Published status data on topic = {MQTT_STATUS_TOPIC} with result = {pub}")
 #============================
 # Callback functions
 #============================
@@ -79,17 +79,7 @@ def on_disconnect(client, userdata, rc):
     client.connected_flag = False
     
     print("END of LOOP")
-    client.loop_stop()
-    
-#    if rc != 0:
-    #ERROR: unexpected broker disconection. Try to reconnect. Stop only if config file changes
-#        while True:
-#            try:
-#                client.reconnect()
-#                return
-#            except:
-                #ERROR:broker not available. Keep trying
- #               continue    
+    client.loop_stop() 
 
 def on_message(client, userdata, message):
     print(f"Recieved message = {message.payload} on topic = {message.topic}")
@@ -214,7 +204,6 @@ print(f"{STATUS_JSON}")
 
 print("\n\n4. Configure MQTT client")
 
-#client = mqtt.Client()
 client = mqtt.Client(client_id = APP_NAME)
 
 #set username and password, must be created it databus configurator
@@ -244,8 +233,9 @@ client.loop_start()
 
 # MAIN thread
 # -----------
+print("Publish metadata and status every 5 seconds")
 lastTime = datetime.datetime.now()
-
+        
 while True:
     
     if ((datetime.datetime.now() - lastTime) < datetime.timedelta(seconds=5)):
@@ -253,7 +243,6 @@ while True:
         wait = True
     
     else:
-        print("EVERY 5 seconds")
         lastTime = datetime.datetime.now()
         
         # Publish Metadata

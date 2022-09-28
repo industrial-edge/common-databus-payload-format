@@ -39,13 +39,17 @@ Topics are a form of defined addresses that allow MQTT clients to share informat
 
 Within the Edge Ecosystem we have a fixed structure of topics:
 
-**`ie/m/j/simatic/v1/...`**
+**Topic: `ie/m/j/simatic/v1/...`**
 
-- **ie**                                = industrial edge
-- **m**/**d**/**s**                     = **m** = metadata / **d** = data / **s** = status ({mqttPayloadType})
-- **j**                                 = JSON format ({mqttPayloadEncoding})
-- **simatic**                           = name for the SIMATIC schema ({msgStructureScheme})
-- **v1**                                = major version of the SIMATIC payload schema ({msgStructureSchemeMajorVersion})
+`ie`= industrial edge
+
+`m/d/s`= **m** = metadata / **d** = data / **s** = status ({mqttPayloadType})
+
+`j`= JSON format ({mqttPayloadEncoding})
+
+`simatic`= name for the SIMATIC schema ({msgStructureScheme})
+
+`v1`= major version of the SIMATIC payload schema ({msgStructureSchemeMajorVersion})
 
 ## Operations
 
@@ -53,16 +57,19 @@ Within the Edge Ecosystem we have a fixed structure of topics:
 
 The metadata provides information about the data structure of a connector. A client can **subscribe** to this topic to get the metadata.
 
-Topic: **`ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
+**Topic: `ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
-- **{providerAppInstanceId}**     = the instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for S7 Connector), for this example we use ***custom1***
-- **dp**                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
+`{providerAppInstanceId}`:<br/>
+The instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for S7 Connector), for this example we use *'custom1'*
 
-Example for Custom Connector: **`ie/m/j/simatic/v1/custom1/dp`**
+`{dp}`:<br/>
+Datapoints for PLC Variables ({mqttPayloadMsgType})
 
-The dedicated **message payload** in JSON format is described [here](#metadata-dpmetadatasimaticv1).
+**Example: `ie/m/j/simatic/v1/custom1/dp`**
 
-Using the IE Flow Creator, it could look like this:
+Please see the dedicated [message payload](#metadata-dpmetadatasimaticv1).
+
+**Flow Creator example**:
 
 ![operation_get_metadata](/docs/payload-format/graphics/operation_get_metadata.png)
 
@@ -70,7 +77,7 @@ Using the IE Flow Creator, it could look like this:
 
 A client can **subscribe** to this topic to read datapoint values.
 
-Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`**
+**Topic: `ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`**
 
 - **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
 - **dp**                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
@@ -78,7 +85,7 @@ Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{d
 - **{dpConnectionNamePath}**      = the connection name including '/', for this example we use ***CustomConnector***
 - **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 
-Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/r/CustomConnector/default`**
+Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/r/Connection_1/Collection_1`**
 
 The dedicated **message payload** in JSON format is described [here](#read-datapoints-subdpvaluesimaticv1msg).
 
@@ -90,7 +97,7 @@ Using the IE Flow Creator, it could look like this:
 
 A client can **publish** a message to this topic to write datapoint values.
 
-Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{dpCollectionNamePath}`**
+**Topic: `ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{dpCollectionNamePath}`**
 
 - **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
 - **dp**                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
@@ -98,7 +105,7 @@ Topic: **`ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{d
 - **{dpConnectionNamePath}**      = the connection name including '/', for this example we use ***CustomConnector***
 - **{dpCollectionNamePath}**      = the collection name including '/'1, e.g. "/default"
 
-Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/w/CustomConnector/default`**
+Example for Custom Connector: **`ie/d/j/simatic/v1/custom1/dp/w/Connection_1/Collection_1`**
 
 The dedicated **message payload** in JSON format is described [here](#write-datapoints-pubDpValueSimaticV1Msg).
 
@@ -110,7 +117,7 @@ Using the IE Flow Creator, it could look like this:
 
 A client can **subscribe** to this topic to get the current status of a connector and it's connections.
 
-Topic: **`ie/s/j/simatic/v1/{providerAppInstanceId}/status`**
+**Topic: `ie/s/j/simatic/v1/{providerAppInstanceId}/status`**
 
 - **{providerAppInstanceId}**     = the instance id of an app, for this example we use ***custom1***
 
@@ -124,7 +131,7 @@ Using the IE Flow Creator, it could look like this:
 
 ## Messages
 
-Each Operation responds with a dedicated message. Below the payload formats are described.
+Each Operation responds with a dedicated message in JSON format. Below the payload formats are described.
 
 ### Metadata (dpMetadataSimaticV1)
 

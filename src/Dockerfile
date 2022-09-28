@@ -1,5 +1,21 @@
-# Copyright 2021 Siemens AG
+# Copyright 2022 Siemens AG
 # This file is subject to the terms and conditions of the MIT License.  
 # See LICENSE file in the top-level directory
 
-FROM nginx:1.19.1-alpine
+# Custom Connector application
+# ----------------------------
+
+FROM python:3-slim-buster
+
+# install OS dependencies
+RUN apt-get update
+RUN apt-get install -y apt-utils
+RUN apt-get install -y gcc
+
+# install python dependencies
+COPY ./ ./app/
+WORKDIR /app/
+RUN pip install -r requirements.txt
+
+# build executable
+CMD ["python3","-u","./custom_connector.py"]

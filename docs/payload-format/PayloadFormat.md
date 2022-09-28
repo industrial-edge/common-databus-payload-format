@@ -59,11 +59,9 @@ The metadata provides information about the data structure of a connector. A cli
 
 **Topic: `ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
-`{providerAppInstanceId}`:<br/>
-The instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for S7 Connector), for this example we use *'custom1'*
+`{providerAppInstanceId}`: The instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for S7 Connector), for this example we use *'custom1'*
 
-`{dp}`:<br/>
-Datapoints for PLC Variables ({mqttPayloadMsgType})
+`{dp}`: Datapoints for PLC Variables ({mqttPayloadMsgType})
 
 **Example: `ie/m/j/simatic/v1/custom1/dp`**
 

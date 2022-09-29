@@ -56,7 +56,7 @@ The metadata provides information about the data structure of a connector. A cli
 **Topic: `ie/m/j/simatic/v1/{providerAppInstanceId}/dp`**
 
 - `{providerAppInstanceId}`: The instance id of an app, like it is already defined for available Edge apps (e.g. *s7c1* for S7 Connector), for this example we use *'custom1'*
-- `{dp}`: Datapoints for PLC Variables ({mqttPayloadMsgType})
+- `dp`: message type "datapoints" (`{mqttPayloadMsgType}`)
 
 **Example: `ie/m/j/simatic/v1/custom1/dp`**
 
@@ -72,11 +72,11 @@ A client can **subscribe** to this topic to read datapoint values.
 
 **Topic: `ie/d/j/simatic/v1/{providerAppInstanceId}/dp/r{dpConnectionNamePath}{dpCollectionNamePath}`**
 
-- `{providerAppInstanceId}`     = the instance id of an app, for this example we use *'custom1'*
-- `dp`                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
-- `r`                           = datapoint access mode "read" ({dpAccessmode})
-- `{dpConnectionNamePath}`      = the connection name including '/', for this example we use *'Connection_1'*
-- `{dpCollectionNamePath}`      = the collection name including '/', e.g. '/default', for this example we use *'/Collection_1'*
+- `{providerAppInstanceId}`:  the instance id of an app, for this example we use *'custom1'*
+- `dp`:                       message type "datapoints" (`{mqttPayloadMsgType}`)
+- `r`:                        datapoint access mode "read" (`{dpAccessmode}`)
+- `{dpConnectionNamePath}`:   the connection name including '/', for this example we use *'Connection_1'*
+- `{dpCollectionNamePath}`:   the collection name including '/', e.g. '/default', for this example we use *'/Collection_1'*
 
 **Example: `ie/d/j/simatic/v1/custom1/dp/r/Connection_1/Collection_1`**
 
@@ -92,11 +92,11 @@ A client can **publish** a message to this topic to write datapoint values.
 
 **Topic: `ie/d/j/simatic/v1/{providerAppInstanceId}/dp/w{dpConnectionNamePath}{dpCollectionNamePath}`**
 
-- `{providerAppInstanceId}`     = the instance id of an app, for this example we use *'custom1'*
-- `dp`                          =  datapoints for PLC Variables ({mqttPayloadMsgType})
-- `w`                           = datapoint access mode "write" ({dpAccessmode})
-- `{dpConnectionNamePath}`      = the connection name including '/', for this example we use *'Connection_1'*
-- `{dpCollectionNamePath}`      = the collection name including '/', e.g. '/default', for this example we use *'/Collection_1'*
+- `{providerAppInstanceId}`:  the instance id of an app, for this example we use *'custom1'*
+- `dp`:                       message type "datapoints" (`{mqttPayloadMsgType}`)
+- `w`:                        datapoint access mode "write" (`{dpAccessmode}`)
+- `{dpConnectionNamePath}`:   the connection name including '/', for this example we use *'Connection_1'*
+- `{dpCollectionNamePath}`:   the collection name including '/', e.g. '/default', for this example we use *'/Collection_1'*
 
 **Example: `ie/d/j/simatic/v1/custom1/dp/w/Connection_1/Collection_1`**
 
@@ -112,7 +112,7 @@ A client can **subscribe** to this topic to get the current status of a connecto
 
 **Topic: `ie/s/j/simatic/v1/{providerAppInstanceId}/status`**
 
-- `{providerAppInstanceId}`     = the instance id of an app, for this example we use *'custom1'*
+- `{providerAppInstanceId}`: the instance id of an app, for this example we use *'custom1'*
 
 **Example: `ie/s/j/simatic/v1/custom1/status`**
 
@@ -130,7 +130,7 @@ Each Operation responds with a dedicated message in JSON format. Below the paylo
 
 This payload contains the metadata.
 
-```
+```json
 {"seq":1,"hashVersion":123456789,"applicationName":"Custom Connector V1.0","statustopic":"ie/s/j/simatic/v1/custom1/status","connections":
   [
     {"name":"Connection_1","type":"simulated","dataPoints":
@@ -145,25 +145,28 @@ This payload contains the metadata.
 }
 ```
 Metadata
-- **{seq}**         = [integer] the sequence number (optional)
-- **{connections}** = [array(object)] ARRAY of connections information (**required**)
+- `{seq}`:          [integer] sequence number (optional)
+- `{hashVersion}`:  [integer] has value to identify the version of the metadata (**required**)
+- `{applicationName}`: [string] official product name of the application (optional)
+- `{statustopic}`:  [string] MQTT topic name of the connector and connection status (optional)
+- `{connections}`:  [array(object)] ARRAY of connections information (**required**)
 
 Connection
-- **{name}**        = [string] name of the connection (**required**)
-- **{type}**        = [string] type of the connection, e.g. "s7"/"pn" (**required**)
-- **{dataPoints}**  = [array(object)] ARRAY of datapoints of this connection, datapoints can be grouped into different collections (**required**)
+- `{name}`:         [string] name of the connection (**required**)
+- `{type}`:         [string] type of the connection, e.g. "s7"/"pn" (**required**)
+- `{dataPoints}`:   [array(object)] ARRAY of datapoints of this connection, datapoints can be grouped into different collections (**required**)
 
 Datapoint collection
-- **{name}**        = [string] name of the datapoint collection, e.g. "default" (**required**)
-- **{topic}**       = [string] MQTT topic name of the datapoint collection (**required**)
-- **{pubTopic}**    = [string] MQTT topic name of the datapoint collection for writing to datapoints of the connector, required when any writeable datapoint is defined (partially required)
-- **{publishType}** = [string] type of publishing, one of "bulk"/"timeseries"/"binarytimeseries" (optional)
-- **{dataPointDefinitions}** = [array(object)] datapoints of this connection (**required**)
+- `{name}`:         [string] name of the datapoint collection, e.g. "default" (**required**)
+- `{topic}`:        [string] MQTT topic name of the datapoint collection (**required**)
+- `{pubTopic}`:     [string] MQTT topic name of the datapoint collection for writing to datapoints of the connector, required when any writeable datapoint is defined (partially required)
+- `{publishType}`:  [string] type of publishing, one of "bulk"/"timeseries"/"binarytimeseries" (optional)
+- `{dataPointDefinitions}`: [array(object)] datapoints of this connection (**required**)
 
 Datapoint
-- **{name}**        = [string] name of the datapoint, the name is only unique within a connection (**required**)
-- **{id}**          = [string] this is a reference between the properties "id" of the datapoint definition in the metadata and the property "id" in the datapoint value, only unique within the connection and not long term stable (and can change after new configuration) (**required**)
-- **{dataType}**    = [string] datatype of datapoint, one of "Bool"/"Byte"/"Word"/"DWord"/"LWord"/"SInt"/"USInt"/"Int"/"UInt"/"DInt"/"UDInt"/"LInt"/"ULInt"/"Real"/"LReal"/"Char"/"String"/"Time"/"LTime"/"DateTime"/"Date"/"Time_Of_Day"/"LTime_Of_Day" (**required**)
+- `{name}`:         [string] name of the datapoint, the name is only unique within a connection (**required**)
+- `{id}`:           [string] this is a reference between the properties "id" of the datapoint definition in the metadata and the property "id" in the datapoint value, only unique within the connection and not long term stable (and can change after new configuration) (**required**)
+- `{dataType}`:     [string] datatype of datapoint, one of "Bool"/"Byte"/"Word"/"DWord"/"LWord"/"SInt"/"USInt"/"Int"/"UInt"/"DInt"/"UDInt"/"LInt"/"ULInt"/"Real"/"LReal"/"Char"/"String"/"Time"/"LTime"/"DateTime"/"Date"/"Time_Of_Day"/"LTime_Of_Day" (**required**)
 
 ### Read datapoints (subDpValueSimaticV1Msg)
 
@@ -180,15 +183,15 @@ This payload contains the datapoint values, that have been read.
 ```
 
 Datapoints
-- **{seq}**   = [integer] the sequence number (optional)
-- **{vals}**  = [array(object)] ARRAY of data points published in the payload (**required**)
+- `{seq}`    [integer] the sequence number (optional)
+- `{vals}`   [array(object)] ARRAY of data points published in the payload (**required**)
 
 Datapoint
-- **{id}**    = [string] unique id (string) of one datapoint, reference to 'id' as defined in metadata (**required**)
-- **{val}**   = [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
-- **{ts}**    = [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
-- **{qc}**    = [integer] quality of the value, see table below (optional)
-- **{qx}**      = [integer] extended quality of the value (optional)
+- `{id}`     [string] unique id (string) of one datapoint, reference to 'id' as defined in metadata (**required**)
+- `{val}`    [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
+- `{ts}` :    [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
+- `{qc}`     [integer] quality of the value, see table below (optional)
+- `{qx}`     [integer] extended quality of the value (optional)
 
 Quality of values
 
@@ -215,15 +218,15 @@ This payload contains the datapoint values, that shall be written.
 ```
 
 Datapoints
-- **{seq}**     = [integer] the sequence number (optional)
-- **{vals}**   = [array(object)] ARRAY of data points published in the payload (**required**)
+- `{seq}`      [integer] the sequence number (optional)
+- `{vals}`     [array(object)] ARRAY of data points published in the payload (**required**)
 
 Datapoint
-- **{id}**    = [string] unique id (string) of one datapoint, as defined in metadata (**required**)
-- **{val}**   = [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
-- **{ts}**      = [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
-- **{qc}**      = [integer] quality of the value, see table below (optional)
-- **{qx}**      = [integer] extended quality of the value (optional)
+- `{id}`       [string] unique id (string) of one datapoint, as defined in metadata (**required**)
+- `{val}`      [integer/number/string/array] value of the tag, must fit to datapoint definition in metadata (**required**)
+- `{ts}`       [string] timestamp of the datapoint, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
+- `{qc}`       [integer] quality of the value, see table below (optional)
+- `{qx}`       [integer] extended quality of the value (optional)
 
 Quality of values
 
@@ -251,15 +254,15 @@ This payload contains the connector status.
 ```
 
 Connector
-- **{seq}**         = [integer] the sequence number (optional)
-- **{ts}**          = [string] timestamp of the status message, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
-- **{connector}**   = [object] properties of connector (**required**)
-- **{status}**      = [string] status of the connector, one of "good"/"bad"/"available"/"unavailable" (**required**)
-- **{connections}** = [array(object)] ARRAY of connection status information (**required**)
+- `{seq}`        [integer] the sequence number (optional)
+- `{ts}`         [string] timestamp of the status message, e.g. "2020-11-23T16:35:41.1234567Z" (optional)
+- `{connector}`  [object] properties of connector (**required**)
+- `{status}`     [string] status of the connector, one of "good"/"bad"/"available"/"unavailable" (**required**)
+- `{connections}` [array(object)] ARRAY of connection status information (**required**)
 
 Connection
-- **{name}**        = [string] name of the connection (**required**)
-- **{status}**      = [string] status of the connection, one of "good"/"stopped"/"bad" (**required**)
+- `{name}`       [string] name of the connection (**required**)
+- `{status}`     [string] status of the connection, one of "good"/"stopped"/"bad" (**required**)
 
 **Connector status values**
 

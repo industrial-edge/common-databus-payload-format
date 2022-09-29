@@ -111,6 +111,6 @@ You can use the Flow Creator to verify the functionality of the Custom Connector
 
 - Read out the **status data** (published every 5 seconds) by activating the dedicated debug node
 
-- **Write** on the datapoints by clicking the "timestamp" node (inject) > 10 value sets are written automatically on the dedicated topic
+- **Write** on the datapoints by clicking the "timestamp" node (inject); 10 value sets are written automatically on the dedicated topic
 
 - **Read** out the datapoint values by activating the dedicated debug node

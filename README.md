@@ -11,7 +11,6 @@ This tutorial explains the common databus payload format and shows an example ho
     - [Used components](#used-components)
   - [Format of Common Databus Payload](#format-of-common-databus-payload)
   - [Custom connector](#custom-connector)
-  - [Usage](#usage)
   - [Documentation](#documentation)
   - [Contribution](#contribution)
   - [Licence and Legal Information](#licence-and-legal-information)
@@ -75,14 +74,12 @@ You can find a detailed description of the Common Databus Payload Format here:
 
 To successfully run the example app "Custom Connector App", you need to follow these steps:
 
-1. [Build and upload application](/docs/custom-connector/CustomConnector.md#build-and-upload-application)
-2. [Configuration](/docs/custom-connector/CustomConnector.md#configuration)
-3. [Deploy and run application](/docs/custom-connector/CustomConnector.md#deploy-and-run-application)
-
-## Usage
-
-xxx
-
+1. [Build application](/docs/custom-connector/CustomConnector.md#build-application)
+2. [Upload application to the Industrial Edge Management](/docs/custom-connector/CustomConnector.md#upload-application-to-the-industrial-edge-management)
+3. [Create configuration for the application](/docs/custom-connector/CustomConnector.md#create-configuration-for-the-application)
+4. [Install the application](/docs/custom-connector/CustomConnector.md#install-the-application)
+5. [Test the application](/docs/custom-connector/CustomConnector.md#test-the-application)
+  
 ## Documentation
 
 You can find further documentation and help in the following links:

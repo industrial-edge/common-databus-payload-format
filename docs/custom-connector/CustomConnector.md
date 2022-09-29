@@ -2,70 +2,100 @@
 
 - [Custom Connector](#custom-connector)
   - [Build application](#build-application)
-    - [Cloning image](#cloning-image)
-    - [Build docker image](#build-docker-image)
-  - [Upload  App to the Industrial Edge Managment](#upload--app-to-the-industrial-edge-managment)
-    - [Connect your Industrial Edge App Publisher](#connect-your-industrial-edge-app-publisher)
-    - [Upload  App using the Industrial Edge App Publisher](#upload--app-using-the-industrial-edge-app-publisher)
-  - [Deploying of App](#deploying-of-app)
-    - [Configuring application](#configuring-application)
-    - [Add additional installation steps here, if required](#add-additional-installation-steps-here-if-required)
-      - [Additional steps](#additional-steps)
-  
+  - [Upload application to the Industrial Edge Management](#upload-application-to-the-industrial-edge-management)
+  - [Create configuration for the application](#create-configuration-for-the-application)
+  - [Install the application](#install-the-application)
+  - [Test the application](#test-the-application)
+
 ## Build application
 
-### Cloning image
-
-- Clone or Download the source code to your engineering VM
-
-### Build docker image
-
-Add instruction how to build your application, e.g.:
-
-- Open console in the source code folder
-- Use command `docker-compose build` to create the docker image.
+- Download the source code to your engineering VM
+- Open a console in the source code folder where the docker-compose.yml file is located
+- Use command `docker-compose build` to create the docker image
 - This docker image can now be used to build you app with the Industrial Edge App Publisher
-- *docker images | grep scannerapp* can be used to check for the images
-- You should get a result similiar to this:
+- `docker images | grep custom-connector` can be used to check for the images
 
-## Upload  App to the Industrial Edge Managment
+## Upload application to the Industrial Edge Management
 
 Please find below a short description how to publish your application in your IEM.
 
-For more detailed information please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
-
-### Connect your Industrial Edge App Publisher
-
 - Connect your Industrial Edge App Publisher to your docker engine
 - Connect your Industrial Edge App Publisher to your Industrial Edge Managment System
-
-### Upload  App using the Industrial Edge App Publisher
-
-- Create a new application using the Industrial Publisher
-- Add a app new version
-- Import the [docker-compose](../docker-compose.yml) file using the **Import YAML** button
+- Create a new application
+- Add a new version for the application
+- Import the [docker-compose](/docker-compose.yml) file using the **Import YAML** button
+- Review, validate and create the version
 - The warning `Build (sevices >> scanner-service) is not supported` can be ignored
+
+![publisher_create](/docs/custom-connector/graphics/publisher_create.png)
+
 - **Start Upload** to transfer the app to Industrial Edge Managment
-- Further information about using the Industrial Edge App Publisher can be found in the [IE Hub](https://iehub.eu1.edge.siemens.cloud/documents/appPublisher/en/start.html)
 
-## Deploying of App
+![iem_app](/docs/custom-connector/graphics/iem_app.png)
 
-### Configuring application
+For more detailed information please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
 
-If your app needs additional configuration you can add further description here, e.g. [param.json](../cfg-data/param.json)
+## Create configuration for the application
+
+For this app, several parameters need to be configured in advance:
+
+- "MQTT_USER": username of the databus user
+- "MQTT_PASSWORD": password of the databus user
+- "MQTT_METADATA_TOPIC": MQTT topic for the metadata
+- "MQTT_DATA_READ_TOPIC": MQTT topic for reading data
+- "MQTT_DATA_WRITE_TOPIC": MQTT topic for writing data
+- "MQTT_STATUS_TOPIC": MQTT topic for connector status
+
+The configuration file has to be named **config.json**.
+
+You can find a predefined version [here](/cfg-data/config.json).
 
 ```json
 {
-    "Parameter1": "Siemens AG",
-    "Parameter2": "edge",
-    "Parameter3": "edge"
+	"MQTT_USER":"edge",
+	"MQTT_PASSWORD":"edge",
+	"MQTT_METADATA_TOPIC":"ie/m/j/simatic/v1/custom1/dp",
+	"MQTT_DATA_READ_TOPIC":"ie/d/j/simatic/v1/custom1/dp/r/Connection_1/Collection_1",
+	"MQTT_DATA_WRITE_TOPIC":"ie/d/j/simatic/v1/custom1/dp/w/Connection_1/Collection_1",
+	"MQTT_STATUS_TOPIC":"ie/s/j/simatic/v1/custom1/status"
 }
 ```
 
-Add description of the configuration here:
+To add a configuration using this file, follow these steps:
 
-### Add additional installation steps here, if required
+- Open the Industrial Edge Management web interface
+- Go to "Applications" > "My Projects"
+- Open the Custom Connector application
+- Click on "Configurations" > "Add Configuration"
+- Enter a name and description
+- Enter `./cfg-data` as host path
+- Enter a template name and description
+- Browse for the `config.json` file
+- Click "Add"
 
-#### Additional steps
+![config_1](/docs/custom-connector/graphics/config_1.png)
 
-Add description here
+## Install the application
+
+To install the application on an Industrial Edge Device, follow these steps:
+
+- Open the Industrial Edge Management web interface
+- Go to "Applications" > "My Projects"
+- Open the Custom Connector application
+- Click on the install button on the right of the version you want to deploy
+- In tab "Configurations" select the above created configuration
+
+![install_1](/docs/custom-connector/graphics/install_1.png)
+
+- In tab "Devices" select the corresponing Industrial Edge Device
+
+![install_2](/docs/custom-connector/graphics/install_2.png)
+
+- Click "Install Now" and wait for the job to be finished successfully
+
+## Test the application
+
+- Go to your Edge device and make sure that the apps Flow Creator and Custom Connector are installed and started
+- Open the Flow Creator UI
+- Import [this](/src/flows.json) flow into the Flow Creator
+

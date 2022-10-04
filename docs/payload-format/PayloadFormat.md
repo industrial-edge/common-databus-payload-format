@@ -27,7 +27,7 @@ The official documentation can be found here under chapter "General Common Paylo
 
 ## Databus broker
 
-The IE Databus acts as MQTT broker within the Edge Ecosystem. The broker filters all incoming messages and distributes data to certain topics. Therefore, if you want to implement an own app that uses the Common Databus Payload Format, you also need to implement a MQTT client inside your app.
+The IE Databus is an MQTT broker within the Edge Ecosystem, which is by default only reachable within an Edge Device. The broker receives all incoming messages and distributes data to agents for their subscribed topics. Therefore, if you want to implement an own app that uses the Common Databus Payload Format, you also need to implement a MQTT client inside your app.
 
 DNS name of the IE Databus broker:
 

@@ -1,37 +1,16 @@
-# Writing good how-to or tutorial
+# Common Databus Payload Format
 
-Before you start writing, read the following materials how to write good documentation (including how-tos).
+This tutorial explains the common databus payload format and shows an example how to create a custom connector out of it.
 
-* [Google Developer style guide](https://developers.google.com/style)
-* [Technical writing Courses](https://developers.google.com/tech-writing)
-* [Microsoft Writing Style Guide](https://docs.microsoft.com/cs-cz/style-guide/welcome/)
-
-Then decide: Are you writing a tutorial or a how-to guide?
-
-[Divio](https://documentation.divio.com/) explains the difference  (Note that this applies for software documentation for application developers)
-
-* Tutorials are lessons that take the reader by the hand through a series of steps to complete a project of some kind. They are what your project needs in order to show a beginner that they can achieve something with it. https://documentation.divio.com/tutorials/
-* How-to guides take the reader through the steps required to solve a real-world problem
-
-Each have a different writing style. Tutorials must be bullet proof (no unexpected behavior) https://documentation.divio.com/how-to-guides/
-
-Note: Try to write the tutorials and how-tos as a standalone html page, ready to be generated using Static site generator [MkDocs](https://www.mkdocs.org/). When referencing code examples or files, use the full URL of the git repository. We want to reuse these how-tos and tutorials in Documentation website.
-
-Don't explain concepts. [It gets in a way of action](https://documentation.divio.com/how-to-guides/#don-t-explain-concepts).  
-
-Don't use HTML tags unless working with videos. And try to avoid using videos unless absolutely necessary. Don't upload videos to Git repository.
-
-Bellow you can find the structure of IE tow-to/tutorial
-
-- [Writing good how-to or tutorial](#writing-good-how-to-or-tutorial)
+- [Common Databus Payload Format](#common-databus-payload-format)
   - [Description](#description)
     - [Overview](#overview)
     - [General Task](#general-task)
   - [Requirements](#requirements)
     - [Prerequisites](#prerequisites)
     - [Used components](#used-components)
-  - [Installation](#installation)
-  - [Usage](#usage)
+  - [Format of Common Databus Payload](#format-of-common-databus-payload)
+  - [Custom connector](#custom-connector)
   - [Documentation](#documentation)
   - [Contribution](#contribution)
   - [Licence and Legal Information](#licence-and-legal-information)
@@ -40,58 +19,76 @@ Bellow you can find the structure of IE tow-to/tutorial
 
 ### Overview
 
-Why has been this how-to/tutorial created? What is the purpose?
+The Industrial Edge Common Databus Payload Format defines how connectors should publish data to the IE Databus via MQTT. Connectors that fulfill this specification can then reuse the existing functionality of Industrial Edge apps in the Industrial Edge Ecosystem.
+
+The official documentation can be found here under chapter "General Common Payload Format":
+
+[Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
+
+![payload_docu](docs/overview_payload_docu.png)
 
 ### General Task
 
-What is the general goal/task of this how-to/tutorial?
+The first section explains the **structure of the Common Databus Payload Format**. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.
 
-![task](docs/graphics/example_graphic.png)
+![overview](docs/overview_payload.png)
+
+The second section shows an **example of a custom connector** using this format. Here we use a simple docker app "Custom Connector App", that acts as custom connector and provides some data. The data is published to the IE Databus via MQTT and can be then used by further apps. In this case we use the IE Flow Creator to read out the data and write some data back to the custom connector.
+
+![overview](docs/overview_app.png)
 
 ## Requirements
 
 ### Prerequisites
 
-What are the requirements on the user knowledge, HW components before starting the how-to?
+- Access to an Industrial Edge Management (IEM) with onboarded Industrial Edge Device (IED)
+- IEM: Installed system configurator for Databus
+- IED: Installed system app Databus
+- IED: Installed app IE Flow Creator
+- Linux VM with docker and docker-compose installed
+- Installed Industrial Edge App Publisher
+- Google Chrome (Version ≥ 72)
 
 ### Used components
 
-List the used software and hardware components that were tested with this how-to.
-Add the used components here (e.g.)
+- Industrial Edge Management (IEM) V1.4.0-42 / V1.6.3
+- Industrial Edge Device (IED) V 1.7.0-18
+- IE Databus Configurator V 1.6.21
+- IE Databus V 1.6.6
+- IE Flow Creator V1.3.8
+- Industrial Edge App Publisher V1.5.6
+- Docker Engine V20.10.10
+- Docker Compose V1.29.2
 
-* Industrial Edge App Publisher V1.0.8
-* Docker Engine 18.09.6
-* Docker Compose V2.4
-* S7 Connector V 1.0.22
-* S7 Connector Configurator V 1.0.9
-* Industrial Edge Device V 1.0.0-34
-* TIA Portal V16
-* PLC: CPU 1511 FW 2.8.3
+## Format of Common Databus Payload
 
-## Installation
+You can find a detailed description of the Common Databus Payload Format here:
 
-How to install/run this application example? (i.e. how to deploy it to Industrial Edge device?) How to build this application? How to set up configurations in IE?
+1. [Overview](/docs/payload-format/PayloadFormat.md#overview)
+2. [Databus broker](/docs/payload-format/PayloadFormat.md#databus-broker)
+3. [Topics](/docs/payload-format/PayloadFormat.md#topics)
+4. [Operations](/docs/payload-format/PayloadFormat.md#operations)
+5. [Messages](/docs/payload-format/PayloadFormat.md#messages)
 
-To keep the readme.md file as short as possible please add more detailed information in the docs folder.
+## Custom connector
 
-* [Build application](docs/Installation.md#build-application)
+To successfully run the example app "Custom Connector App", you need to follow these steps:
 
-## Usage
-
-When the app is installed, how can I use it? Usually some basic UI description to prove that the app is working correctly.
-
+1. [Build application](/docs/custom-connector/CustomConnector.md#build-application)
+2. [Upload application to the Industrial Edge Management](/docs/custom-connector/CustomConnector.md#upload-application-to-the-industrial-edge-management)
+3. [Create configuration for the application](/docs/custom-connector/CustomConnector.md#create-configuration-for-the-application)
+4. [Install the application](/docs/custom-connector/CustomConnector.md#install-the-application)
+5. [Test the application](/docs/custom-connector/CustomConnector.md#test-the-application)
+  
 ## Documentation
 
-Add links to documentation. Either on external URL or in the doc folder. Please use always link to a file not to a directory (it doesn't work with static site generator engines).
+You can find further documentation and help in the following links:
 
-Add these links:
-
-You can find further documentation and help in the following links
-
-* [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/#/documentation)
-* [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
-* [Industrial Edge landing page](https://new.siemens.com/global/en/products/automation/topic-areas/industrial-edge/simatic-edge.html)
-* [Industrial Edge GitHub page](https://github.com/industrial-edge)
+- [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/#/documentation)
+- [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
+- [Industrial Edge landing page](https://new.siemens.com/global/en/products/automation/topic-areas/industrial-edge/simatic-edge.html)
+- [Industrial Edge GitHub page](https://github.com/industrial-edge)
+- [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
 
 ## Contribution
 
@@ -103,4 +100,3 @@ If you are interested in contributing via Pull Request, please check the [Contri
 ## License and Legal Information
 
 Please read the [Legal information](LICENSE.txt).
-

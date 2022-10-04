@@ -1,14 +1,22 @@
-# Copyright 2021 Siemens AG
+# Copyright 2022 Siemens AG
 # This file is subject to the terms and conditions of the MIT License.  
-# See LICENSE file in the top-level directory.
+# See LICENSE file in the top-level directory
 
-# Minimalistic docker-compose file to be used in development enviroment. Running docker-compose up should start the app.
-version: '2.4'
+version: "2.4"
 
 services:
-  hello-world:
-    build: ./src
-    image: 'hello-world:1.0.0'
-    ports:
-      - '8080:80'
-    restart: always
+    custom-connector:
+        image: custom-connector:1.0.0
+        build:
+            context: ./src
+        mem_limit: 100mb
+        restart: unless-stopped
+        volumes:
+            - './publish/:/publish/'
+            - './cfg-data/:/cfg-data/'
+        networks:
+            - proxy-redirect
+networks:
+    proxy-redirect:
+        external: true
+        name: proxy-redirect

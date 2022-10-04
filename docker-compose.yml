@@ -16,11 +16,6 @@ services:
             - './cfg-data/:/cfg-data/'
         networks:
             - proxy-redirect
-    ie_databus: # note that the underscore will be removed in the future
-        image: eclipse-mosquitto
-        mem_limit: 100mb
-        networks:
-            - proxy-redirect
 networks:
     proxy-redirect:
         external: true

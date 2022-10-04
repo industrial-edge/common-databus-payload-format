@@ -104,6 +104,10 @@ You can use the Flow Creator to verify the functionality of the Custom Connector
 - Go to your Edge device and make sure that the apps Flow Creator and Custom Connector are installed and started
 - Open the Flow Creator UI
 - Import [this](/src/flows.json) flow into the Flow Creator
+- Open one of the MQTT nodes and edit the server "ie-databus:1883"
+- Set the databus credentials (tab "safety") and safe the settings
+- Deploy the flow
+- All MQTT nodes should be shown as connected now
 
 ![flow](/docs/custom-connector/graphics/flow.png)
 

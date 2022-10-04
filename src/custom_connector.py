@@ -1,3 +1,4 @@
+
 # Custom Connector Application
 
 # This file is part of the common databus payload format repository.
@@ -9,9 +10,9 @@
 # See LICENSE file in the top-level directory
 
 import paho.mqtt.client as mqtt     # mqtt client for interacting with the databus
-import os                           # interaction with operating system (e.g. read file)
 import json                         # storing and exchanging data via JSON file
-import datetime
+import datetime                     # for current timestamp
+import time                         # for sleep function
 
 APP_NAME = "Custom Connector"
 CONFIG_FILE = '/cfg-data/config.json'
@@ -25,6 +26,8 @@ global MQTT_DATA_WRITE_TOPIC
 global MQTT_STATUS_TOPIC
 global METADATA_JSON
 global STATUS_JSON
+global meta_json_string
+global status_json_string
 
 MQTT_USER = ""
 MQTT_PASSWORD = ""
@@ -32,6 +35,10 @@ MQTT_METADATA_TOPIC = ""
 MQTT_DATA_READ_TOPIC = ""
 MQTT_DATA_WRITE_TOPIC = ""
 MQTT_STATUS_TOPIC = ""
+METADATA_JSON = ""
+STATUS_JSON = ""
+meta_json_string = ""
+status_json_string = ""
 
 #============================
 # Reading Configuration
@@ -46,14 +53,13 @@ def read_parameter(jsonfile):
         return data
 
 def publish_metadata(client):
-        meta_json_string = json.dumps(METADATA_JSON)
         pub = client.publish(MQTT_METADATA_TOPIC, meta_json_string)
         #print(f"> Published metadata on topic = {MQTT_METADATA_TOPIC} with result = {pub}")
 
 def publish_statusdata(client):
-        status_json_string = json.dumps(STATUS_JSON)
         pub = client.publish(MQTT_STATUS_TOPIC, status_json_string)
         #print(f"> Published status data on topic = {MQTT_STATUS_TOPIC} with result = {pub}")
+
 #============================
 # Callback functions
 #============================
@@ -95,7 +101,7 @@ def on_message(client, userdata, message):
     else:
         return
     
-    
+
 #============================
 # Main function
 #============================
@@ -181,6 +187,7 @@ METADATA_JSON = {
 print(f"{METADATA_JSON}")
 
 meta_json_string = json.dumps(METADATA_JSON)
+print(f"{meta_json_string}")
 
 # Create status data (fix setting)
 # -------------------------------
@@ -198,6 +205,9 @@ STATUS_JSON = {
 }
     
 print(f"{STATUS_JSON}")
+
+status_json_string = json.dumps(STATUS_JSON)
+print(f"{status_json_string}")
 
 # Configure MQTT client
 # ---------------------
@@ -220,9 +230,8 @@ print("\n\n5. Start MQTT client")
 client.connect(MQTT_BROKER)
 
 # subscribe to write data topic and listen, if data is written
-ret2 = client.subscribe(MQTT_DATA_WRITE_TOPIC)
-print(f"Subscribed to write topic ({MQTT_DATA_WRITE_TOPIC}) with result = {ret2}")
-
+ret = client.subscribe(MQTT_DATA_WRITE_TOPIC)
+print(f"Subscribed to write topic ({MQTT_DATA_WRITE_TOPIC}) with result = {ret}")
 
 # MQTT loop
 # ---------
@@ -234,19 +243,14 @@ client.loop_start()
 # MAIN thread
 # -----------
 print("Publish metadata and status every 5 seconds")
-lastTime = datetime.datetime.now()
         
 while True:
     
-    if ((datetime.datetime.now() - lastTime) < datetime.timedelta(seconds=5)):
-        # wait and do nothing
-        wait = True
-    
-    else:
-        lastTime = datetime.datetime.now()
+    # Publish Metadata
+    publish_metadata(client)
+            
+    # Publish Status Data
+    publish_statusdata(client)
         
-        # Publish Metadata
-        publish_metadata(client)
-        
-        # Publish Status Data
-        publish_statusdata(client)
+    # Wait for 5 seconds
+    time.sleep(5)

@@ -1,11 +1,11 @@
 # Custom Connector
 
 - [Custom Connector](#custom-connector)
-  - [Build application](#build-application)
-  - [Upload application to the Industrial Edge Management](#upload-application-to-the-industrial-edge-management)
-  - [Create configuration for the application](#create-configuration-for-the-application)
-  - [Install the application](#install-the-application)
-  - [Test the application](#test-the-application)
+	- [Build application](#build-application)
+	- [Upload application to the Industrial Edge Management](#upload-application-to-the-industrial-edge-management)
+	- [Create configuration for the application](#create-configuration-for-the-application)
+	- [Install the application](#install-the-application)
+	- [Test the application](#test-the-application)
 
 The Custom Connector app simulates a custom connector that was implemented based on the Common Databus Payload Format. The app includes also a MQTT client to communicate with the IE Databus. This connector uses predefined MQTT topics (according to the configuration file) for handling metadata, datapoints and status data. The app is implemented in Python.
 
@@ -14,6 +14,7 @@ The Custom Connector app simulates a custom connector that was implemented based
 ## Build application
 
 - Download the source code to your engineering VM
+- Navigate to the *src* folder and rename the example Dockerfile (Dockerfile.example) to 'Dockerfile'
 - Open a console in the source code folder where the docker-compose.yml file is located
 - Use command `docker-compose build` to create the docker image
 - This docker image can now be used to build you app with the Industrial Edge App Publisher

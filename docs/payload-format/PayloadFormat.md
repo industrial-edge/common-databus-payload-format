@@ -21,7 +21,7 @@ This page describes the Common Databus Payload Format, which implementation is m
 
 The official documentation can be found here under chapter "General Common Payload Format":
 
-[Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
+[Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/intro/build_your_use_case/data-processing/databus/reference/index.html)
 
 ![mqtt](/docs/payload-format/graphics/mqtt.png)
 

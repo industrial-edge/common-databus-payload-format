@@ -24,7 +24,7 @@ The Industrial Edge Common Databus Payload Format defines how connectors should 
 
 The official documentation can be found here under chapter "General Common Payload Format":
 
-[Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/intro/build_your_use_case/data-processing/databus/reference/index.html)
+[Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/apis_and_references/apis/databus/reference/index.html)
 
 ![payload_docu](docs/graphics/overview_payload_docu.png)
 

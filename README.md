@@ -24,7 +24,7 @@ The Industrial Edge Common Databus Payload Format defines how connectors should 
 
 The official documentation can be found here under chapter "General Common Payload Format":
 
-[Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/intro/build_your_use_case/data-processing/databus/reference/index.html)
+[Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/apis_and_references/apis/databus/reference/index.html)
 
 ![payload_docu](docs/graphics/overview_payload_docu.png)
 
@@ -89,7 +89,7 @@ You can find further documentation and help in the following links:
 - [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
 - [Industrial Edge landing page](https://new.siemens.com/global/en/products/automation/topic-areas/industrial-edge/simatic-edge.html)
 - [Industrial Edge GitHub page](https://github.com/industrial-edge)
-- [Industrial Edge Common Databus Payload Format](https://industrial-edge.io/developer/systemapps/data-processing/databus/reference/index.html)
+- [Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/apis_and_references/apis/databus/reference/index.html)
 
 ## Contribution
 

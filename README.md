@@ -59,7 +59,7 @@ The second section shows an **example of a custom connector** using this format.
   - Databus V 2.1.0-4
   - Flow Creator V1.15.0-2
 - Industrial Edge Device V 1.12.0-10
-- Industrial Edge App Publisher V1.10.5
+- Industrial Edge App Publisher V1.11.5
 - Docker Engine V24.0.5
 - Docker Compose V1.29.2
 

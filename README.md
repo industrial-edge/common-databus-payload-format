@@ -42,23 +42,25 @@ The second section shows an **example of a custom connector** using this format.
 
 ### Prerequisites
 
-- Access to an Industrial Edge Management (IEM) with onboarded Industrial Edge Device (IED)
+- Access to an Industrial Edge Management (IEM)
+- Onboarded Industial Edge Device (IED) on IEM
 - IEM: Installed system configurator for Databus
 - IED: Installed system app Databus
-- IED: Installed app IE Flow Creator
+- IED: Installed app Flow Creator
 - Linux VM with docker and docker-compose installed
 - Installed Industrial Edge App Publisher
-- Google Chrome (Version ≥ 72)
+- HTML5-capable Internet browser (in general it is advised to use Chrome, for Linux based systems it is recommended to use Firefox)
 
 ### Used components
 
-- Industrial Edge Management (IEM) V1.4.0-42 / V1.6.3
-- Industrial Edge Device (IED) V 1.7.0-18
-- IE Databus Configurator V 1.6.21
-- IE Databus V 1.6.6
-- IE Flow Creator V1.3.8
-- Industrial Edge App Publisher V1.5.6
-- Docker Engine V20.10.10
+- Industrial Edge Management OS V1.5.2-4
+  - Databus Configurator V2.1.0-3
+- Industrial Edge Management App V1.13.10
+  - Databus V 2.1.0-4
+  - Flow Creator V1.15.0-2
+- Industrial Edge Device V 1.12.0-10
+- Industrial Edge App Publisher V1.10.5
+- Docker Engine V24.0.5
 - Docker Compose V1.29.2
 
 ## Format of Common Databus Payload

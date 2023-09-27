@@ -32,11 +32,11 @@ The official documentation can be found here under chapter "General Common Paylo
 
 The first section explains the **structure of the Common Databus Payload Format**. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.
 
-![overview](docs/graphics/overview_payload.png)
+<img src="docs/graphics/overview_payload.png" width=550px />
 
 The second section shows an **example of a custom connector** using this format. Here we use a simple docker app "Custom Connector App", that acts as custom connector and provides some data. The data is published to the IE Databus via MQTT and can be then used by further apps. In this case we use the IE Flow Creator to read out the data and write some data back to the custom connector.
 
-![overview](docs/graphics/overview_app.png)
+<img src="docs/graphics/overview_app.png" width=550px />
 
 ## Requirements
 

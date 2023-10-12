@@ -1,8 +1,7 @@
 {
 	"MQTT_USER":"edge",
 	"MQTT_PASSWORD":"edge",
-	"MQTT_METADATA_TOPIC":"ie/m/j/simatic/v1/custom1/dp",
-	"MQTT_DATA_READ_TOPIC":"ie/d/j/simatic/v1/custom1/dp/r/Connection_1/Collection_1",
-	"MQTT_DATA_WRITE_TOPIC":"ie/d/j/simatic/v1/custom1/dp/w/Connection_1/Collection_1",
-	"MQTT_STATUS_TOPIC":"ie/s/j/simatic/v1/custom1/status"
+	"APP_INSTANCE_ID":"custom1",
+	"CONNECTION":"Connection_1",
+	"COLLECTION":"Collection_1"
 }

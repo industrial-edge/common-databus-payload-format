@@ -44,11 +44,11 @@ For more detailed information please see the section for [uploading apps to the 
 
 For this app, several parameters need to be configured in advance:
 
-- `MQTT_USER`: username of the databus user (string)
-- `MQTT_PASSWORD`: password of the databus user (string)
-- `APP_INSTANCE_ID`: instance id for this app (string)
-- `CONNECTION`: the connection name (string)
-- `COLLECTION`: the collection name (string)
+- `MQTT_USER` (string): username of the databus user; for internal MQTT client login
+- `MQTT_PASSWORD` (string): password of the databus user; for internal MQTT client login
+- `APP_INSTANCE_ID` (string): instance id for this app; can be any string; included in all topics
+- `CONNECTION` (string): the connection name; can be any string; included in read/write topics
+- `COLLECTION` (string): the collection name; can be any string; included in read/write topics
 
 The configuration file has to be named **config.json**.
 
@@ -86,7 +86,7 @@ To install the application on an Industrial Edge Device, follow these steps:
 - Go to "Applications" > "My Projects"
 - Open the Custom Connector application
 - Click on the install button on the right of the version you want to deploy
-- In tab "Configurations" select the above created configuration
+- In tab "Configurations" select the above created configuration (If you do not select any configuration, the app will use the default values as listet in the config.json example above.)
 
 ![install_1](/docs/custom-connector/graphics/install_1.png)
 

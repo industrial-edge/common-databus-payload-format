@@ -9,7 +9,7 @@
 
 The Custom Connector app simulates a custom connector that was implemented based on the Common Databus Payload Format. The app includes also a MQTT client to communicate with the IE Databus. This connector uses predefined MQTT topics (according to the configuration file) for handling metadata, datapoints and status data. The app is implemented in Python.
 
-<img src="/docs/custom-connector/graphics/app_overview.png" width=700px />
+<img src="/docs/custom-connector/graphics/app_overview.png" width=900px />
 
 ## Build application
 

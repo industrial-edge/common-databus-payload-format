@@ -86,7 +86,7 @@ To install the application on an Industrial Edge Device, follow these steps:
 - Go to "Applications" > "My Projects"
 - Open the Custom Connector application
 - Click on the install button on the right of the version you want to deploy
-- In tab "Configurations" select the above created configuration (If you do not select any configuration, the app will use the default values as listet in the config.json example above.)
+- In tab "Configurations" select the above created configuration (if you do not select any configuration, the app will use the default values as listet in the config.json example above)
 
 ![install_1](/docs/custom-connector/graphics/install_1.png)
 

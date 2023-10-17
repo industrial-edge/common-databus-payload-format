@@ -26,17 +26,17 @@ The official documentation can be found here under chapter "General Common Paylo
 
 [Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/apis_and_references/apis/databus/reference/index.html)
 
-![payload_docu](docs/graphics/overview_payload_docu.png)
+<img src="docs/graphics/overview_payload_docu.png" width=700px />
 
 ### General Task
 
 The first section explains the **structure of the Common Databus Payload Format**. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.
 
-<img src="docs/graphics/overview_payload.png" width=550px />
+<img src="docs/graphics/overview_payload.png" width=550 />
 
 The second section shows an **example of a custom connector** using this format. Here we use a simple docker app "Custom Connector App", that acts as custom connector and provides some data. The data is published to the IE Databus via MQTT and can be then used by further apps. In this case we use the IE Flow Creator to read out the data and write some data back to the custom connector.
 
-<img src="docs/graphics/overview_app.png" width=550px />
+<img src="docs/graphics/overview_app.png" width=550 />
 
 ## Requirements
 

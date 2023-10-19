@@ -26,7 +26,7 @@ The official documentation can be found here under chapter "General Common Paylo
 
 [Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/apis_and_references/apis/databus/reference/index.html)
 
-<img src="docs/graphics/overview_payload_docu.png" width=700px />
+<img src="docs/graphics/overview_payload_docu.png" width=1100px />
 
 ### General Task
 

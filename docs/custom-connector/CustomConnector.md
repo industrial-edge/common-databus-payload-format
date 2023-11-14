@@ -9,7 +9,7 @@
 
 The Custom Connector app simulates a custom connector that was implemented based on the Common Databus Payload Format. The app includes also a MQTT client to communicate with the IE Databus. This connector uses predefined MQTT topics (according to the configuration file) for handling metadata, datapoints and status data. The app is implemented in Python.
 
-![app_overview](/docs/custom-connector/graphics/app_overview.png)
+<img src="/docs/custom-connector/graphics/app_overview.png" width=900px />
 
 ## Build application
 
@@ -44,12 +44,11 @@ For more detailed information please see the section for [uploading apps to the 
 
 For this app, several parameters need to be configured in advance:
 
-- `MQTT_USER`: username of the databus user
-- `MQTT_PASSWORD`: password of the databus user
-- `MQTT_METADATA_TOPIC`: MQTT topic for the metadata
-- `MQTT_DATA_READ_TOPIC`: MQTT topic for reading data
-- `MQTT_DATA_WRITE_TOPIC`: MQTT topic for writing data
-- `MQTT_STATUS_TOPIC`: MQTT topic for connector status
+- `MQTT_USER` (string): username of the databus user; for internal MQTT client login
+- `MQTT_PASSWORD` (string): password of the databus user; for internal MQTT client login
+- `APP_INSTANCE_ID` (string): instance id for this app; can be any string; included in all topics
+- `CONNECTION` (string): the connection name; can be any string; included in read/write topics
+- `COLLECTION` (string): the collection name; can be any string; included in read/write topics
 
 The configuration file has to be named **config.json**.
 
@@ -59,10 +58,9 @@ You can find a predefined version [here](/cfg-data/config.json).
 {
 	"MQTT_USER":"edge",
 	"MQTT_PASSWORD":"edge",
-	"MQTT_METADATA_TOPIC":"ie/m/j/simatic/v1/custom1/dp",
-	"MQTT_DATA_READ_TOPIC":"ie/d/j/simatic/v1/custom1/dp/r/Connection_1/Collection_1",
-	"MQTT_DATA_WRITE_TOPIC":"ie/d/j/simatic/v1/custom1/dp/w/Connection_1/Collection_1",
-	"MQTT_STATUS_TOPIC":"ie/s/j/simatic/v1/custom1/status"
+	"APP_INSTANCE_ID":"custom1",
+	"CONNECTION":"Connection_1",
+	"COLLECTION":"Collection_1"
 }
 ```
 
@@ -88,7 +86,7 @@ To install the application on an Industrial Edge Device, follow these steps:
 - Go to "Applications" > "My Projects"
 - Open the Custom Connector application
 - Click on the install button on the right of the version you want to deploy
-- In tab "Configurations" select the above created configuration
+- In tab "Configurations" select the above created configuration (if you do not select any configuration, the app will use the default values as listet in the config.json example above)
 
 ![install_1](/docs/custom-connector/graphics/install_1.png)
 
@@ -112,9 +110,9 @@ You can use the Flow Creator to verify the functionality of the Custom Connector
 
 ![flow](/docs/custom-connector/graphics/flow.png)
 
-- Read out the **metadata** (published every 5 seconds) by activating the dedicated debug node
+- Read out the **metadata** by activating the dedicated debug node (published when starting/restarting the app)
 
-- Read out the **status data** (published every 5 seconds) by activating the dedicated debug node
+- Read out the **status data** by activating the dedicated debug node (published when starting/restarting the app)
 
 - **Write** on the datapoints by clicking the "timestamp" node (inject); 10 value sets are written automatically on the dedicated topic
 

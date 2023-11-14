@@ -26,39 +26,41 @@ The official documentation can be found here under chapter "General Common Paylo
 
 [Industrial Edge Common Databus Payload Format](https://docs.eu1.edge.siemens.cloud/apis_and_references/apis/databus/reference/index.html)
 
-![payload_docu](docs/graphics/overview_payload_docu.png)
+<img src="docs/graphics/overview_payload_docu.png" width=1100px />
 
 ### General Task
 
 The first section explains the **structure of the Common Databus Payload Format**. Here all possible operations and the dedicated topics are listed. Furthermore the responding messages are explained.
 
-![overview](docs/graphics/overview_payload.png)
+<img src="docs/graphics/overview_payload.png" width=550 />
 
 The second section shows an **example of a custom connector** using this format. Here we use a simple docker app "Custom Connector App", that acts as custom connector and provides some data. The data is published to the IE Databus via MQTT and can be then used by further apps. In this case we use the IE Flow Creator to read out the data and write some data back to the custom connector.
 
-![overview](docs/graphics/overview_app.png)
+<img src="docs/graphics/overview_app.png" width=550 />
 
 ## Requirements
 
 ### Prerequisites
 
-- Access to an Industrial Edge Management (IEM) with onboarded Industrial Edge Device (IED)
+- Access to an Industrial Edge Management (IEM)
+- Onboarded Industial Edge Device (IED) on IEM
 - IEM: Installed system configurator for Databus
 - IED: Installed system app Databus
-- IED: Installed app IE Flow Creator
+- IED: Installed app Flow Creator
 - Linux VM with docker and docker-compose installed
 - Installed Industrial Edge App Publisher
-- Google Chrome (Version ≥ 72)
+- HTML5-capable Internet browser (in general it is advised to use Chrome, for Linux based systems it is recommended to use Firefox)
 
 ### Used components
 
-- Industrial Edge Management (IEM) V1.4.0-42 / V1.6.3
-- Industrial Edge Device (IED) V 1.7.0-18
-- IE Databus Configurator V 1.6.21
-- IE Databus V 1.6.6
-- IE Flow Creator V1.3.8
-- Industrial Edge App Publisher V1.5.6
-- Docker Engine V20.10.10
+- Industrial Edge Management OS V1.5.2-4
+  - Databus Configurator V2.1.0-3
+- Industrial Edge Management App V1.13.10
+  - Databus V 2.1.0-4
+  - Flow Creator V1.15.0-2
+- Industrial Edge Device V 1.12.0-10
+- Industrial Edge App Publisher V1.11.5
+- Docker Engine V24.0.5
 - Docker Compose V1.29.2
 
 ## Format of Common Databus Payload

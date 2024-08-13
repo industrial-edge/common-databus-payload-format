@@ -4,7 +4,7 @@
 # This file is part of the common databus payload format repository.
 # https://github.com/industrial-edge/common-databus-payload-format
 #
-# Copyright (c) 2023 Siemens Aktiengesellschaft
+# Copyright (c) Siemens 2023
 #
 # This file is subject to the terms and conditions of the MIT License.  
 # See LICENSE file in the top-level directory

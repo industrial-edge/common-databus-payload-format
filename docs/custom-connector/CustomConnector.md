@@ -83,18 +83,18 @@ To add a configuration, follow these steps:
 To install the application on an Industrial Edge Device, follow these steps:
 
 - Open the Industrial Edge Management web interface
-- Go to "Applications" > "My Projects"
-- Open the Custom Connector application
+- Go to "Applications" > "Device"
+- Search for the Custom Connector application nd select it
 - Click on the install button on the right of the version you want to deploy
+- Select the Industrial Edge Device where you want to install it
+
+![install_2](/docs/custom-connector/graphics/install_2.png)
+
 - In tab "Configurations" select the above created configuration (if you do not select any configuration, the app will use the default values as listet in the config.json example above)
 
 ![install_1](/docs/custom-connector/graphics/install_1.png)
 
-- In tab "Devices" select the corresponing Industrial Edge Device
-
-![install_2](/docs/custom-connector/graphics/install_2.png)
-
-- Click "Install Now" and wait for the job to be finished successfully
+- Click "Install" and wait for the job to be finished successfully
 
 ## Test the application
 

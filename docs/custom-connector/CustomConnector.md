@@ -84,9 +84,9 @@ To install the application on an Industrial Edge Device, follow these steps:
 
 - Open the Industrial Edge Management web interface
 - Go to "Applications" > "Device"
-- Search for the Custom Connector application nd select it
-- Click on the install button on the right of the version you want to deploy
-- Select the Industrial Edge Device where you want to install it
+- Search for the Custom Connector application and select it
+- Click on "install on device"
+- Select the Industrial Edge Device where you desire to install the app
 
 ![install_2](/docs/custom-connector/graphics/install_2.png)
 

@@ -36,7 +36,7 @@ Please find below a short description how to publish your application in your IE
 
 - **Start Upload** to transfer the app to Industrial Edge Managment
 
-![iem_app](/docs/custom-connector/graphics/iem_app.png)
+![iem_app](/docs/custom-connector/graphics/iem_app_upload)
 
 For more detailed information please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
 
@@ -92,7 +92,7 @@ To install the application on an Industrial Edge Device, follow these steps:
 
 - In tab "Configurations" select the above created configuration (if you do not select any configuration, the app will use the default values as listet in the config.json example above)
 
-![install_1](/docs/custom-connector/graphics/install_1.png)
+![install_1](/docs/custom-connector/graphics/install_configuration)
 
 - Click "Install" and wait for the job to be finished successfully
 

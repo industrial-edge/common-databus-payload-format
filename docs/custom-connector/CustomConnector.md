@@ -36,7 +36,7 @@ Please find below a short description how to publish your application in your IE
 
 - **Start Upload** to transfer the app to Industrial Edge Managment
 
-![iem_app](/docs/custom-connector/graphics/iem_app.png)
+![iem_app](/docs/custom-connector/graphics/iem_app_upload)
 
 For more detailed information please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
 
@@ -76,25 +76,28 @@ To add a configuration, follow these steps:
 - Browse for the `config.json` file
 - Click "Add"
 
-![config_1](/docs/custom-connector/graphics/config_1.png)
+![config_1](/docs/custom-connector/graphics/configuration_settings)
 
 ## Install the application
 
 To install the application on an Industrial Edge Device, follow these steps:
 
 - Open the Industrial Edge Management web interface
-- Go to "Applications" > "My Projects"
-- Open the Custom Connector application
-- Click on the install button on the right of the version you want to deploy
+- Go to "Applications" > "Device"
+- Search for the Custom Connector application and select it
+- Click on "install on device"
+
+![install_2](/docs/custom-connector/graphics/install_device.png)
+
+- Select the Industrial Edge Device where you desire to install the app
+
+![install_3](/docs/custom-connector/graphics/select_device.png)
+
 - In tab "Configurations" select the above created configuration (if you do not select any configuration, the app will use the default values as listet in the config.json example above)
 
-![install_1](/docs/custom-connector/graphics/install_1.png)
+![install_1](/docs/custom-connector/graphics/install_configuration)
 
-- In tab "Devices" select the corresponing Industrial Edge Device
-
-![install_2](/docs/custom-connector/graphics/install_2.png)
-
-- Click "Install Now" and wait for the job to be finished successfully
+- Click "Install" and wait for the job to be finished successfully
 
 ## Test the application
 

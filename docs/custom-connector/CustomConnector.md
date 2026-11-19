@@ -32,7 +32,7 @@ Please find below a short description how to publish your application in your IE
 - Review, validate and create the version
 - The warning `Build (sevices >> scanner-service) is not supported` can be ignored
 
-<kbd><img src="/docs/custom-connector/graphics/publisher_create.png" width="800"></kbd>
+<kbd><img src="/docs/custom-connector/graphics/publisher_create.png" width="600"></kbd>
 
 - **Start Upload** to transfer the app to Industrial Edge Managment
 
@@ -76,7 +76,7 @@ To add a configuration, follow these steps:
 - Browse for the `config.json` file
 - Click "Add"
 
-<kbd><img src="/docs/custom-connector/graphics/configuration_settings.png" width="800"></kbd>
+<kbd><img src="/docs/custom-connector/graphics/configuration_settings.png" width="500"></kbd>
 
 ## Install the application
 

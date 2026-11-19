@@ -36,7 +36,7 @@ Please find below a short description how to publish your application in your IE
 
 - **Start Upload** to transfer the app to Industrial Edge Managment
 
-![iem_app](/docs/custom-connector/graphics/iem_app_upload)
+![iem_app](/docs/custom-connector/graphics/iem_app_upload.png)
 
 For more detailed information please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
 
@@ -76,7 +76,7 @@ To add a configuration, follow these steps:
 - Browse for the `config.json` file
 - Click "Add"
 
-![config_1](/docs/custom-connector/graphics/configuration_settings)
+![config_1](/docs/custom-connector/graphics/configuration_settings.png)
 
 ## Install the application
 
@@ -95,7 +95,7 @@ To install the application on an Industrial Edge Device, follow these steps:
 
 - In tab "Configurations" select the above created configuration (if you do not select any configuration, the app will use the default values as listet in the config.json example above)
 
-![install_1](/docs/custom-connector/graphics/install_configuration)
+<kbd><img src="/docs/custom-connector/graphics/install_configuration.png" width="600"></kbd>
 
 - Click "Install" and wait for the job to be finished successfully
 
@@ -111,7 +111,7 @@ You can use the Flow Creator to verify the functionality of the Custom Connector
 - Deploy the flow
 - All MQTT nodes should be shown as connected now
 
-![flow](/docs/custom-connector/graphics/flow.png)
+<kbd><img src="/docs/custom-connector/graphics/flow.png" width="600"></kbd>
 
 - Read out the **metadata** by activating the dedicated debug node (published when starting/restarting the app)
 

@@ -44,28 +44,29 @@ The second section shows an **example of a custom connector** using this format.
 
 - Access to an Industrial Edge Management (IEM)
 - Onboarded Industial Edge Device (IED) on IEM
-- IEM: Installed system configurator for Databus
-- IED: Installed system app Databus
-- IED: Installed app Flow Creator
+- Installed system configurators and apps (see list "Used components")
+- Installed apps (see list "Used components")
+- IED is connected to PLC
 - Linux VM with docker and docker-compose installed
 - Installed Industrial Edge App Publisher
-- HTML5-capable Internet browser (in general it is advised to use Chrome, for Linux based systems it is recommended to use Firefox)
+- Google Chrome (Version ≥ 72) or Firefox on Linux based system
 
 ### Used components
 
-- Industrial Edge Management OS V1.5.2-4
-  - Databus Configurator V2.1.0-3
-- Industrial Edge Management App V1.13.10
-  - Databus V 2.1.0-4
-  - Flow Creator V1.15.0-2
-- Industrial Edge Device V 1.12.0-10
-- Industrial Edge App Publisher V1.11.5
-- Docker Engine V24.0.5
-- Docker Compose V1.29.2
+- Industrial Edge Management (IEM) V2.3.2
+  - Databus Configurator
+- Industrial Edge Device (IED) V1.28.1-2-b
+  - Databus V4.0.0
+  - Flow Creator V1.21.0
+- Industrial Edge App Publisher V1.27.9
+- Docker Engine V29.10.0
+- Docker Compose V5.7.0
 
 ## Format of Common Databus Payload
 
-You can find a detailed description of the Common Databus Payload Format here:
+You can find a detailed description of the Common Databus Payload Format:
+
+[Format of Common Databus Payload](/docs/payload-format/PayloadFormat.md)
 
 1. [Overview](/docs/payload-format/PayloadFormat.md#overview)
 2. [Databus broker](/docs/payload-format/PayloadFormat.md#databus-broker)
@@ -77,6 +78,7 @@ You can find a detailed description of the Common Databus Payload Format here:
 
 To successfully run the example app "Custom Connector App", you need to follow these steps:
 
+[Custom Connector](/docs/custom-connector/CustomConnector.md)
 1. [Build application](/docs/custom-connector/CustomConnector.md#build-application)
 2. [Upload application to the Industrial Edge Management](/docs/custom-connector/CustomConnector.md#upload-application-to-the-industrial-edge-management)
 3. [Create configuration for the application](/docs/custom-connector/CustomConnector.md#create-configuration-for-the-application)

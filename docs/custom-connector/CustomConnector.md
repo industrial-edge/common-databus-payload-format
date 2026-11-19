@@ -32,11 +32,11 @@ Please find below a short description how to publish your application in your IE
 - Review, validate and create the version
 - The warning `Build (sevices >> scanner-service) is not supported` can be ignored
 
-![publisher_create](/docs/custom-connector/graphics/publisher_create.png)
+<kbd><img src="/docs/custom-connector/graphics/publisher_create.png" width="600"></kbd>
 
 - **Start Upload** to transfer the app to Industrial Edge Managment
 
-![iem_app](/docs/custom-connector/graphics/iem_app.png)
+<kbd><img src="/docs/custom-connector/graphics/iem_app_upload.png" width="800"></kbd>
 
 For more detailed information please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
 
@@ -76,25 +76,28 @@ To add a configuration, follow these steps:
 - Browse for the `config.json` file
 - Click "Add"
 
-![config_1](/docs/custom-connector/graphics/config_1.png)
+<kbd><img src="/docs/custom-connector/graphics/configuration_settings.png" width="500"></kbd>
 
 ## Install the application
 
 To install the application on an Industrial Edge Device, follow these steps:
 
 - Open the Industrial Edge Management web interface
-- Go to "Applications" > "My Projects"
-- Open the Custom Connector application
-- Click on the install button on the right of the version you want to deploy
+- Go to "Applications" > "Device"
+- Search for the Custom Connector application and select it
+- Click on "install on device"
+
+<kbd><img src="/docs/custom-connector/graphics/install_device.png" width="800"></kbd>
+
+- Select the Industrial Edge Device where you desire to install the app
+
+<kbd><img src="/docs/custom-connector/graphics/select_device.png" width="800"></kbd>
+
 - In tab "Configurations" select the above created configuration (if you do not select any configuration, the app will use the default values as listet in the config.json example above)
 
-![install_1](/docs/custom-connector/graphics/install_1.png)
+<kbd><img src="/docs/custom-connector/graphics/install_configuration.png" width="800"></kbd>
 
-- In tab "Devices" select the corresponing Industrial Edge Device
-
-![install_2](/docs/custom-connector/graphics/install_2.png)
-
-- Click "Install Now" and wait for the job to be finished successfully
+- Click "Install" and wait for the job to be finished successfully
 
 ## Test the application
 
@@ -108,7 +111,7 @@ You can use the Flow Creator to verify the functionality of the Custom Connector
 - Deploy the flow
 - All MQTT nodes should be shown as connected now
 
-![flow](/docs/custom-connector/graphics/flow.png)
+<kbd><img src="/docs/custom-connector/graphics/flow.png" width="800"></kbd>
 
 - Read out the **metadata** by activating the dedicated debug node (published when starting/restarting the app)
 
